@@ -1,0 +1,59 @@
+<!--<h4>Plot List</h4>-->
+
+
+
+
+<button class="btn btn-outline-primary  my-2" [routerLink]="['/plots',0,'edit']">New</button>
+<div class="row gx-5">
+<div class="col-md-4">
+
+
+  <div *ngIf="plots$ | async as plots">
+<table class="table table-dark table-hover table-group-divider align-middle table align-middle table-bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+<!--    <th>Plot Type</th>-->
+<!--    <th>Description</th>-->
+<!--    <th>Parent</th>-->
+
+        <!--  <th>Plots</th>-->
+    <!--  <th>Scenes</th>-->
+    <!--  <th>People</th>-->
+    <!--  <th>Events</th>-->
+    <!--  <th>Locations</th>-->
+    <!--  <th>Things</th>-->
+  </tr>
+  </thead>
+  <tbody class="vertical-align: bottom">
+  <tr *ngFor="let plot of plots">
+    <td><button class="nav-link link-primary" (click)="select(plot.id)">{{plot.name}}</button></td>
+<!--    <td>{{plot.plotType}}</td>-->
+<!--    <td>{{plot.description}} </td>-->
+<!--    <td>{{plot.parent}}   </td>-->
+    <!--    Calculated fields
+    <td>{{plot.Plots}}<td>-->
+      <!--    <td>{{plot.Scenes}}<td>-->
+      <!--    <td>{{plot.People}}<td>-->
+      <!--    <td>{{plot.Events}}<td>-->
+      <!--    <td>{{plot.Locations}}<td>-->
+      <!--    <td>{{plot.Things}}<td>-->
+  </tr>
+<!--</div>-->
+  </tbody>
+</table>
+  </div>
+</div>
+
+
+
+<div class="col-md-8">
+  <div *ngIf="plotSelected">
+    <app-plot [plot]="selected"
+    (plotEmitter)="savePlot($event)"></app-plot>
+  </div>
+</div>
+
+
+</div>
+

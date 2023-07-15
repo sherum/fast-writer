@@ -1,0 +1,94 @@
+<div class="card col-md-4">
+
+
+  <div class="card-header">
+    Login
+  </div>
+  <div class="card-body">
+
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div class="mb-3">
+        <div class="mb-3">
+          <label for="username"
+                 class="form-label">User Name</label>
+          <input
+            #uname="ngModel"
+            required
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            aria-describedby="usernamehelp"
+            [(ngModel)]="user.userName"
+          [class.field-error]="form.submitted && uname.invalid">
+          <div id="usernamehelp"
+               class="form-text">
+            This has to be unique when paired with your email
+          </div>
+          <p [hidden]="uname.valid || uname.untouched" class="alert alert-danger">
+            Enter a user name.
+          </p>
+        </div>
+        <label for="password"
+               class="form-label">Password</label>
+        <input
+              #pass="ngModel"
+               required
+               type="password"
+               class="form-control"
+               id="password"
+               name="password"
+               [(ngModel)]="password"/>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox"
+               class="form-check-input"
+               id="register"
+               name="register"
+               [(ngModel)]="register"/>
+        <label class="form-check-label"
+               for="register">Register</label>
+      </div>
+      <div class="mb-3"
+           *ngIf="register">
+        <div class="mb-3">
+          <label for="email"
+                 class="form-label">Email address</label>
+          <input type="email"
+                 #email="ngModel"
+                 required
+                 class="form-control"
+                 id="email"
+                 name="email"
+                 aria-describedby="emailHelp"
+                 [(ngModel)]="user.email">
+          <div id="emailHelp"
+               class="form-text">We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+
+          <label for="accountType"
+                 class="form-label">Account Type</label>
+          <select
+                  #acctType="ngModel"
+                  required
+                  name="accountType"
+                  id="accountType"
+                  class="form-select"
+                  [(ngModel)]="user.accountType">
+            <option>Personal</option>
+            <option>Group</option>
+            <option>Professional</option>
+            <option>Business</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit"
+              class="btn btn-primary">Submit
+      </button>
+    </form>
+  </div>
+</div>
+
+

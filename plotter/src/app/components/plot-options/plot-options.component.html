@@ -1,0 +1,42 @@
+<div class="row">
+<div class="col">
+  <ul>
+    <li class="nav-link">
+<button type="button" class="btn btn-outline-primary" (click)="setParent()">Set Parent</button>
+    </li>
+     <li class="nav-link">
+<button type="button" class="btn btn-outline-secondary" [routerLink]="['events',0,]">Add Event</button>
+
+    </li>
+     <li class="nav-link">
+
+<button type="button" class="btn btn-outline-success">Add Scene</button>
+    </li>
+     <li class="nav-link">
+<button type="button" class="btn btn-outline-danger">Add Person</button>
+
+    </li>
+     <li class="nav-link">
+<button type="button" class="btn btn-outline-warning">Link Location</button>
+
+    </li>
+  </ul>
+</div>
+<div class="col">
+  <div *ngIf="showParent" class="container" id="setparent">
+
+  </div>
+<router-outlet></router-outlet>
+</div>
+</div>
+<div class="col-md-3">
+  <p>The idea is to link PELT and/or scenes to plotlines. With Arc types this
+  represents a milestone over time to track the evolultion of the character.The
+  creation should flow so plot can be linked to a event which can include any
+    story components. Arc should be linked to a scene and whatever sparked
+    the evolution. The goal is a builder flow so a new plot can be fleshed out
+    and existing plots can be added to like an audit trail of experiences.</p>
+</div>
+
+
+

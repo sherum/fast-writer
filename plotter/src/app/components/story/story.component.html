@@ -1,0 +1,197 @@
+<div class="container">
+
+  <div class="shading">
+    <h3>{{story.title}}</h3>
+  </div>
+  <button type="button"
+          class="btn btn-success" (click)="save(story)">Save
+  </button>
+  <div class="container">
+    <form #form="ngForm">
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="title"
+                 class="form-label">Title</label>
+          <input
+            #title="ngModel"
+            required
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            aria-describedby="titlehelp"
+            [(ngModel)]="story.title"
+            [class.field-error]="form.submitted && title.invalid">
+          <div id="titlehelp"
+               class="form-text">
+            The name of your story.
+          </div>
+          <p [hidden]="title.valid || title.untouched" class="alert alert-danger">
+            Enter a story name.
+          </p>
+        </div>
+        <div class="col-md-3">
+          <label for="author"
+                 class="form-label">Author</label>
+          <input
+            #author="ngModel"
+            required
+            type="text"
+            class="form-control"
+            id="author"
+            name="author"
+            [(ngModel)]="story.author"/>
+        </div>
+        <div class="col-md-3">
+
+          <label class="form-label"
+                 for="genres">Genre</label>
+          <select #genres id="genres" name="genres" [(ngModel)]="story.genre" class="form-select">
+            <option *ngFor="let val of genre" value="{{val.name}}">
+              {{val.name}} </option>
+          </select>
+
+        </div>
+
+      </div>
+      <div class="row">
+
+
+        <div class="mb-3 col-md-6">
+          <div class="mb-3">
+            <label for="maguffin"
+                   class="form-label">Maguffin</label>
+            <textarea
+              #maguffin="ngModel"
+              required
+              type="text"
+              class="form-control"
+              id="maguffin"
+              name="maguffin"
+              aria-describedby="maguffinhelp"
+              [(ngModel)]="story.maguffin"
+              [class.field-error]="form.submitted && title.invalid"></textarea>
+            <div id="maguffinhelp"
+                 class="form-text">
+              The hook for your reader.
+            </div>
+            <p [hidden]="maguffin.valid || maguffin.untouched" class="alert alert-danger">
+              Enter a non-plot description.
+            </p>
+          </div>
+
+        </div>
+        <div class="mb-3 col-md-6">
+          <div class="mb-3">
+            <label for="title"
+                   class="form-label">Summary</label>
+            <textarea
+              #summary="ngModel"
+              required
+              type="text"
+              class="form-control"
+              id="summary"
+              name="summary"
+              aria-describedby="sumhelp"
+              [(ngModel)]="story.summary"
+              [class.field-error]="form.submitted && summary.invalid"></textarea>
+            <div id="sumhelp"
+                 class="form-text">
+              A high level plot description.
+            </div>
+            <p [hidden]="summary.valid || summary.untouched" class="alert alert-danger">
+              Enter the a summary of the story plot.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+
+</div>
+
+
+<!--  Story Detail Display-->
+<div class="col-md-12">
+  <table class="table table-striped table-responsive table-info">
+    <thead>
+    <th>Plots</th>
+    <th>Scenes</th>
+    <th>People</th>
+    <th>Locations</th>
+    <th>Events</th>
+    <th>Thing</th>
+    </thead>
+    <tbody>
+    <tr>
+
+      <td>
+        <app-plots></app-plots>
+      </td>
+      <td>
+        <app-scenes></app-scenes>
+      </td>
+      <td>
+        <app-people></app-people>
+      </td>
+      <td>
+        <app-events></app-events>
+      </td>
+      <td>
+        <app-locations></app-locations>
+      </td>
+      <td>
+        <app-things></app-things>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--  <table class="table-bordered table-responsive">-->
+<!--    <thead>-->
+<!--    <th>Element</th>-->
+<!--    <th>Count</th>-->
+
+<!--    </thead>-->
+<!--    <tbody class="align-content-between">-->
+<!--    <tr *ngIf="plots$ | async as plots">-->
+<!--      <td><a routerLink="/plots">Plots</a></td>-->
+<!--      <td>{{plotCount}}</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td ><a routerLink="/scenes">Scene</a></td>-->
+<!--      <td >5</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td ><a routerLink="/persons">People</a></td>-->
+<!--      <td >3</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td ><a routerLink="/events">Event</a></td>-->
+<!--      <td >8</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td ><a routerLink="/locations">Location</a></td>-->
+<!--      <td >5</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td ><a routerLink="/things">Thing</a></td>-->
+<!--      <td >3</td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+
+
+<!--</div>-->
+<!--    <pre>The story list retrieves and once-->
+<!--      a selected story is opened, the counts-->
+<!--      are calculated dynamically. The links open-->
+<!--    the designated ____-list component. Each-->
+<!--    routerLink needs pass the Array for the item-->
+<!--      list.</pre>-->
+

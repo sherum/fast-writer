@@ -1,0 +1,62 @@
+
+
+
+
+
+<!--<h4>Event List</h4>-->
+<button class="btn btn-outline-primary  my-2" (click)="create()">New </button>
+<div class="row gx-5">
+<div class="col-md-4">
+
+<div *ngIf="event$ | async as events">
+<table class="table table-dark table-hover table-group-divider align-middle table align-middle table-bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+<!--    <th>Author</th>-->
+<!--    <th>Genre</th>-->
+<!--    <th>Maguffin</th>-->
+<!--    <th>Summary</th>-->
+    <!--  <th>events</th>-->
+    <!--  <th>Scenes</th>-->
+    <!--  <th>People</th>-->
+    <!--  <th>Events</th>-->
+    <!--  <th>Locations</th>-->
+    <!--  <th>Things</th>-->
+  </tr>
+  </thead>
+  <tbody class="vertical-align: bottom">
+  <tr *ngFor="let event of events">
+<!--  <div *ngIf="stories$ | async as stories">-->
+
+    <td><button class="nav-link link-primary" (click)="select(event.id)">{{event.name}}</button></td>
+<!--    <td>{{event.author}}  </td>-->
+<!--    <td>{{event.genre}}   </td>-->
+<!--    <td>{{event.maguffin}}</td>-->
+<!--    <td>{{event.summary}} </td>-->
+      <!--    Calculated fields
+      <td>{{event.events}}<td>-->
+      <!--    <td>{{event.Scenes}}<td>-->
+      <!--    <td>{{event.People}}<td>-->
+      <!--    <td>{{event.Events}}<td>-->
+      <!--    <td>{{event.Locations}}<td>-->
+      <!--    <td>{{event.Things}}<td>-->
+  </tr>
+<!--</div>-->
+  </tbody>
+</table>
+</div>
+</div>
+
+
+
+<div class="col-md-8">
+  <div *ngIf="eventSelected">
+    <app-event [event]="selected"
+    (eventEmitter)="saveEvent($event)"></app-event>
+  </div>
+</div>
+
+
+</div>
+

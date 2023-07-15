@@ -1,0 +1,35 @@
+
+<button class="btn btn-primary  my-2" (click)="create()">New Story</button>
+<div class="row gx-5">
+  <div class="col-md-2">
+
+
+    <div *ngIf="stories$ | async as stories">
+      <table class="table table-dark table-hover table-group-divider  table-bordered">
+        <thead>
+        <tr>
+          <th>Story List</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let story of stories">
+          <td>
+            <button class="nav-link link-primary" (click)="select(story.id)">{{story.title}}</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="col-md-8">
+    <div *ngIf="activeStory$| async as story">
+      <app-story [story]="story"
+                 (storyEmitter)="saveStory($event)"></app-story>
+    </div>
+  </div>
+
+
+</div>
+

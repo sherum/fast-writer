@@ -1,0 +1,55 @@
+<!--<h4>location List</h4>-->
+<button class="btn btn-outline-primary my-2" (click)="create()">New</button>
+<div class="row gx-5">
+<div class="col-md-4">
+
+  <div *ngIf="locations$ | async as locations">
+<table class="table table-dark table-hover table-group-divider align-middle table align-middle table-bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+<!--    <th>Author</th>-->
+<!--    <th>Genre</th>-->
+<!--    <th>Maguffin</th>-->
+<!--    <th>Summary</th>-->
+    <!--  <th>locations</th>-->
+    <!--  <th>Scenes</th>-->
+    <!--  <th>People</th>-->
+    <!--  <th>Events</th>-->
+    <!--  <th>Locations</th>-->
+    <!--  <th>Things</th>-->
+  </tr>
+  </thead>
+
+  <tbody class="vertical-align: bottom">
+  <tr *ngFor="let location of locations">
+    <td><button class="nav-link link-primary" (click)="select(location.id)">{{location.name}}</button></td>
+<!--    <td>{{location.author}}  </td>-->
+<!--    <td>{{location.genre}}   </td>-->
+<!--    <td>{{location.maguffin}}</td>-->
+<!--    <td>{{location.summary}} </td>-->
+      <!--    Calculated fields
+      <td>{{location.locations}}<td>-->
+      <!--    <td>{{location.Scenes}}<td>-->
+      <!--    <td>{{location.People}}<td>-->
+      <!--    <td>{{location.Events}}<td>-->
+      <!--    <td>{{location.Locations}}<td>-->
+      <!--    <td>{{location.Things}}<td>-->
+  </tr>
+<!--</div>-->
+  </tbody>
+</table>
+</div>
+
+
+
+<div class="col-md-8">
+  <div *ngIf="locationSelected">
+    <app-location [location]="selected"
+    (locationEmitter)="saveLocation($event)"></app-location>
+  </div>
+</div>
+
+
+</div>
+
