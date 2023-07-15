@@ -1,9 +1,11 @@
 import pymongo
 import certifi
 
+from fast_ms.config import DB_URL
+
 
 class Database():
-    URI = "mongodb+srv://writer:sapper75@cluster0.detqd.mongodb.net/?retryWrites=true&w=majority"
+    URI = DB_URL
 
     DB = None
 
