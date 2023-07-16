@@ -19,7 +19,7 @@ eventSelected:boolean = false;
 selected:IEvent|undefined;
 event$ = combineLatest([
     this.backend.events$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$
   ]).pipe(
     map(([events, selectedId]) =>
       events.filter(event => event.storyId === selectedId)

@@ -26,7 +26,9 @@ import {IScene} from "../models/scene";
 })
 export class BackendService {
   private selectedStoryId = new BehaviorSubject<string>("0");
-  selectedIdAction$:Observable<string> = this.selectedStoryId.asObservable();
+  private selectedPlotId = new BehaviorSubject<string>("0");
+  selectedStoryIdAction$:Observable<string> = this.selectedStoryId.asObservable();
+  selectedPlotIdAction$:Observable<string> = this.selectedPlotId.asObservable();
   //***********************  stub code to simulate an http call*********
   stories$:Observable<IStory[]> = of(testStorys);
   events$:Observable<IEvent[]> = of(testEvents);
@@ -34,7 +36,7 @@ export class BackendService {
   plots$:Observable<IPlot[]> = of(testPlots);
   things$:Observable<IThing[]> = of(testThings);
   testPersons$:Observable<IPerson[]> = of(testPersons);
-  selectedStory$:Observable<string> = this.selectedIdAction$;
+  selectedStory$:Observable<string> = this.selectedStoryIdAction$;
   scenes$:Observable<IScene[]> = of(testScenes);
 
 
@@ -50,6 +52,9 @@ export class BackendService {
 
   onSelected(storyId:string):void{
     this.selectedStoryId.next(storyId);
+  }
+  onPlotSelected(plotId:string):void{
+    this.selectedPlotId.next(plotId);
   }
 
   getStories():Observable<IStory[]>{

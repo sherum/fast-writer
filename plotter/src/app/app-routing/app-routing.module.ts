@@ -40,7 +40,7 @@ const routes: Routes = [
       },
     ]
   },
-  {path: 'plots/:id', component: PlotComponent},
+  {path: 'plot/:id', component: PlotComponent},
   {path: 'persons/:id', component: PersonComponent},
   {path: 'events/:id', component: EventComponent},
   {path: 'locations/:id', component: LocationComponent},
@@ -52,6 +52,8 @@ const routes: Routes = [
   // {path: 'events', component: EventsComponent},
   // {path: 'locations', component: LocationsComponent},
   // {path: 'things', component: ThingsComponent},
+
+
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ]
@@ -60,7 +62,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, {enableTracing: false}),
+    RouterModule.forRoot(routes, {enableTracing: true}),
   ],
   exports: [
     RouterModule

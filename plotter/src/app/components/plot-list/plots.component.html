@@ -27,7 +27,7 @@
   </thead>
   <tbody class="vertical-align: bottom">
   <tr *ngFor="let plot of plots">
-    <td><button class="nav-link link-primary" (click)="select(plot.id)">{{plot.name}}</button></td>
+    <td><button class="nav-link link-primary" (click)="selectedPlot(plot.id)">{{plot.name}}</button></td>
 <!--    <td>{{plot.plotType}}</td>-->
 <!--    <td>{{plot.description}} </td>-->
 <!--    <td>{{plot.parent}}   </td>-->
@@ -45,14 +45,14 @@
   </div>
 </div>
 
+<!--<router-outlet></router-outlet>-->
 
-
-<div class="col-md-8">
-  <div *ngIf="plotSelected">
-    <app-plot [plot]="selected"
-    (plotEmitter)="savePlot($event)"></app-plot>
-  </div>
-</div>
+<!--<div class="col-md-8">-->
+<!--  <div *ngIf="plotSelected">-->
+<!--    <app-plot [plot]="selected"-->
+<!--    (plotEmitter)="savePlot($event)"></app-plot>-->
+<!--  </div>-->
+<!--</div>-->
 
 
 </div>

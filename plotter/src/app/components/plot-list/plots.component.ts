@@ -12,9 +12,12 @@ import {combineLatest, map} from "rxjs";
   styleUrls: ['./plots.component.css']
 })
 export class PlotsComponent implements OnInit{
+
   ngOnInit(): void {
-  this.backend.selectedIdAction$.subscribe(action =>
-    console.log("Selected Acton: ",action))
+  this.backend.selectedStoryIdAction$.subscribe(action =>
+    console.log("Selected Story: ",action));
+  this.backend.selectedPlotIdAction$.subscribe(action =>
+    console.log("Selected Plot: ",action))
   }
 
 constructor(private router:Router,private backend:BackendService) {
@@ -23,7 +26,7 @@ plotSelected:boolean = false;
 selected:IPlot|undefined;
 plots$ = combineLatest([
     this.backend.plots$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$,
   ]).pipe(
     map(([plots, selectedId]) =>
       plots.filter(plot => plot.storyId === selectedId)
@@ -33,7 +36,9 @@ create():void{
 
 }
 
-select(id:string):void{
+selectedPlot(id:string):void{
+  this.backend.onPlotSelected(id);
+  this.router.navigate(['plot',id]);
 
 }
 

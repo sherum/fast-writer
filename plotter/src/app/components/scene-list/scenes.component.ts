@@ -19,7 +19,7 @@ sceneSelected:boolean = false;
 selected:IScene|undefined;
 scenes$ = combineLatest([
     this.backend.scenes$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$
   ]).pipe(
     map(([scenes, selectedId]) =>
       scenes.filter(scene => scene.storyId === selectedId)

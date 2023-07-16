@@ -19,7 +19,7 @@ locationSelected:boolean = false;
 selected:ILocation|undefined;
 locations$ = combineLatest([
     this.backend.locations$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$
   ]).pipe(
     map(([locations, selectedId]) =>
       locations.filter(location => location.storyId === selectedId)
