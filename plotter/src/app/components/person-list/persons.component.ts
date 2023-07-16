@@ -31,7 +31,8 @@ create():void{
 }
 
 select(id:string):void{
-
+this.backend.onPersonSelected(id);
+  this.router.navigate(['/person',id]);
 }
 
 savePerson(event:IPerson):void{

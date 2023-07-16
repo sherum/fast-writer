@@ -1,1 +1,22 @@
-<p>event works!</p>
+<div class="col-md-3">
+<!--<div *ngIf="plot$ |async as scene">-->
+<div *ngIf="event">
+<form class="form" #form="ngForm">
+        <div class="row g-3">
+            <div class="col-sm-4">
+            <div class=".form-floating">
+                <label for="name">Person Name</label>
+                <input class="form-control"
+                       type="text"
+                       required
+                       id="name"
+                       placeholder="name of person"
+                       name="name"
+                      #name
+                [(ngModel)] ="event.name"/>
+            </div>
+        </div>
+        </div>
+</form>
+</div>
+</div>

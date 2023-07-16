@@ -5,7 +5,7 @@
 <div class="col-md-4">
 
   <div *ngIf="scenes$ | async as scenes">
-<table class="table table-dark table-hover table-group-divider align-middle table align-middle table-bordered">
+<table class="table table-light table-hover table-group-divider align-middle table align-middle table-bordered">
   <thead>
   <tr>
     <th>Name</th>
@@ -44,12 +44,12 @@
 
 
 
-<div class="col-md-8">
-  <div *ngIf="sceneSelected">
-    <app-scene [scene]="selected"
-    (sceneEmitter)="saveScene($event)"></app-scene>
-  </div>
-</div>
+<!--<div class="col-md-8">-->
+<!--  <div *ngIf="sceneSelected">-->
+<!--    <app-scene [scene]="selected"-->
+<!--    (sceneEmitter)="saveScene($event)"></app-scene>-->
+<!--  </div>-->
+<!--</div>-->
 
 
 </div>

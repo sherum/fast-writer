@@ -4,7 +4,7 @@ import {IThing} from "../../models/thing";
 import {NgForm} from "@angular/forms";
 import {IPlot} from "../../models/plot";
 import {BackendService} from "../../services/backend.service";
-import {combineLatest, map} from "rxjs";
+import {combineLatest, map, tap} from "rxjs";
 
 @Component({
   selector: 'app-plots',
@@ -29,8 +29,9 @@ plots$ = combineLatest([
     this.backend.selectedStoryIdAction$,
   ]).pipe(
     map(([plots, selectedId]) =>
-      plots.filter(plot => plot.storyId === selectedId)
-    ));
+      plots.filter(plot => plot.storyId === selectedId)),
+      tap(item => console.log("plot list",item)));
+
 
 create():void{
 
@@ -38,7 +39,7 @@ create():void{
 
 selectedPlot(id:string):void{
   this.backend.onPlotSelected(id);
-  this.router.navigate(['plot',id]);
+  this.router.navigate(['/plot',id]);
 
 }
 

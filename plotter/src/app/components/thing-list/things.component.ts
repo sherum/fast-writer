@@ -29,7 +29,8 @@ things$ = combineLatest([
   }
 
   select(id: string): void {
-
+    this.backend.onThingSelected(id);
+    this.router.navigate(['/thing', id]);
   }
 
   saveThing(thing:IThing): void {
