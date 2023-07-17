@@ -40,8 +40,8 @@ const routes: Routes = [
       },
     ]
   },
-   {path: 'scene/:id', component: SceneComponent},
-  {path: 'plot/:id', component: PlotComponent},
+  {path: 'plot/:id', component: PlotComponent,outlet:'details'},
+  {path: 'scene/:id', component: SceneComponent},
   {path: 'person/:id', component: PersonComponent},
   {path: 'event/:id', component: EventComponent},
   {path: 'location/:id', component: LocationComponent},
@@ -63,7 +63,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, {enableTracing: false}),
+    RouterModule.forRoot(routes, {enableTracing: true}),
   ],
   exports: [
     RouterModule
