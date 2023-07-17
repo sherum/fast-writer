@@ -132,12 +132,12 @@ export const testPersons = [
   },
   {
     id: "2C",
-    storyId: "2",
+    storyId: "3",
     name: "Felicia Martin"
   },
   {
     id: "3C",
-    storyId: "2",
+    storyId: "3",
     name: "Rex Grambone"
   }
 ];

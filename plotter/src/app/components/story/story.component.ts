@@ -16,7 +16,7 @@ export class StoryComponent {
   working = newStory;
   plots$ = combineLatest([
     this.backend.plots$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$
   ]).pipe(
     map(([plots, selectedId]) =>
       plots.filter(story => story.id === selectedId)

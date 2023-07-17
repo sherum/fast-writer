@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {EventList, IEvent} from "../../models/event";
 import {IThing} from "../../models/thing";
 import {NgForm} from "@angular/forms";
@@ -13,30 +13,32 @@ import {combineLatest, map} from "rxjs";
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent {
-  constructor(private router:Router,private backend:BackendService) {
-}
-eventSelected:boolean = false;
-selected:IEvent|undefined;
-event$ = combineLatest([
+  constructor(private router: Router, private backend: BackendService) {
+  }
+
+  eventSelected: boolean = false;
+  selected: IEvent | undefined;
+  event$ = combineLatest([
     this.backend.events$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$
   ]).pipe(
     map(([events, selectedId]) =>
       events.filter(event => event.storyId === selectedId)
     ));
 
 
-create():void{
+  create(): void {
 
-}
+  }
 
-select(id:string):void{
+  select(id: string): void {
+    this.backend.onEventSelected(id);
+    this.router.navigate(['/event', id]);
+  }
 
-}
+  saveEvent(event: IEvent): void {
 
-saveEvent(event:IEvent):void{
-
-}
+  }
 
 
 }

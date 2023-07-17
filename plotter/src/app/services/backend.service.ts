@@ -26,7 +26,23 @@ import {IScene} from "../models/scene";
 })
 export class BackendService {
   private selectedStoryId = new BehaviorSubject<string>("0");
-  selectedIdAction$:Observable<string> = this.selectedStoryId.asObservable();
+  private selectedPlotId = new BehaviorSubject<string>("0");
+    selectedStoryIdAction$:Observable<string> = this.selectedStoryId.asObservable();
+  selectedPlotIdAction$:Observable<string> = this.selectedPlotId.asObservable();
+
+  private selectedSceneId = new BehaviorSubject<string>("0");
+  private selectedPersonId = new BehaviorSubject<string>("0");
+  selectedSceneIdAction$:Observable<string> = this.selectedSceneId.asObservable();
+  selectedPersonIdAction$:Observable<string> = this.selectedPersonId.asObservable();
+
+  private selectedEventId = new BehaviorSubject<string>("0");
+  private selectedLocationId = new BehaviorSubject<string>("0");
+  selectedEventIdAction$:Observable<string> = this.selectedEventId.asObservable();
+  selectedLocationIdAction$:Observable<string> = this.selectedLocationId.asObservable();
+
+  private selectedThingId = new BehaviorSubject<string>("0");
+  selectedThingIdAction$:Observable<string> = this.selectedThingId.asObservable();
+
   //***********************  stub code to simulate an http call*********
   stories$:Observable<IStory[]> = of(testStorys);
   events$:Observable<IEvent[]> = of(testEvents);
@@ -34,7 +50,7 @@ export class BackendService {
   plots$:Observable<IPlot[]> = of(testPlots);
   things$:Observable<IThing[]> = of(testThings);
   testPersons$:Observable<IPerson[]> = of(testPersons);
-  selectedStory$:Observable<string> = this.selectedIdAction$;
+  selectedStory$:Observable<string> = this.selectedStoryIdAction$;
   scenes$:Observable<IScene[]> = of(testScenes);
 
 
@@ -50,6 +66,31 @@ export class BackendService {
 
   onSelected(storyId:string):void{
     this.selectedStoryId.next(storyId);
+  }
+  onPlotSelected(plotId:string):void{
+    this.selectedPlotId.next(plotId);
+  }
+
+
+
+  onSceneSelected(sceneId: string): void {
+    this.selectedSceneId.next(sceneId);
+  }
+
+  onPersonSelected(personId: string): void {
+    this.selectedPersonId.next(personId);
+  }
+
+  onEventSelected(eventId: string): void {
+    this.selectedEventId.next(eventId);
+  }
+
+  onLocationSelected(locationId: string): void {
+    this.selectedLocationId.next(locationId);
+  }
+
+  onThingSelected(thingId: string): void {
+    this.selectedThingId.next(thingId);
   }
 
   getStories():Observable<IStory[]>{

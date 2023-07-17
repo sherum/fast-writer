@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
-import {IThing} from "../../models/thing";
-import {NgForm} from "@angular/forms";
+import {Component} from '@angular/core';
 import {ILocation} from "../../models/location";
 import {Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
-import {IEvent} from "../../models/event";
-import {combineLatest, map} from "rxjs";
+import {combineLatest, map, tap} from "rxjs";
+
 
 @Component({
   selector: 'app-locations',
@@ -13,28 +11,32 @@ import {combineLatest, map} from "rxjs";
   styleUrls: ['./locations.component.css']
 })
 export class LocationsComponent {
- constructor(private router:Router,private backend:BackendService) {
-}
-locationSelected:boolean = false;
-selected:ILocation|undefined;
-locations$ = combineLatest([
+
+  constructor(private router: Router, private backend: BackendService) {
+  }
+
+
+  selected: ILocation | undefined;
+  locations$ = combineLatest([
     this.backend.locations$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$
   ]).pipe(
     map(([locations, selectedId]) =>
-      locations.filter(location => location.storyId === selectedId)
-    ));
+      locations.filter(location => location.storyId === selectedId)),
+       tap(item => console.log("story locations list",item)));
 
-create():void{
+  create(): void {
 
-}
+  }
 
-select(id:string):void{
+  select(id: string): void {
+    console.log("THis location button isn't doing squat ", id)
+    this.backend.onLocationSelected(id);
+    this.router.navigate(['/location', id]);
+  }
 
-}
+  saveLocation(event: ILocation): void {
 
-saveLocation(event:ILocation):void{
-
-}
+  }
 
 }

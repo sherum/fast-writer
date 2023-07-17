@@ -18,7 +18,7 @@ export class ThingsComponent {
 selected:ILocation|undefined;
 things$ = combineLatest([
     this.backend.things$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$
   ]).pipe(
     map(([things, selectedId]) =>
       things.filter(thing => thing.storyId === selectedId)
@@ -29,7 +29,8 @@ things$ = combineLatest([
   }
 
   select(id: string): void {
-
+    this.backend.onThingSelected(id);
+    this.router.navigate(['/thing', id]);
   }
 
   saveThing(thing:IThing): void {

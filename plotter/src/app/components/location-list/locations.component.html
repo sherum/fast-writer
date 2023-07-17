@@ -4,7 +4,7 @@
 <div class="col-md-4">
 
   <div *ngIf="locations$ | async as locations">
-<table class="table table-dark table-hover table-group-divider align-middle table align-middle table-bordered">
+<table class="table table-light table-hover table-group-divider align-middle table align-middle table-bordered">
   <thead>
   <tr>
     <th>Name</th>
@@ -43,12 +43,12 @@
 
 
 
-<div class="col-md-8">
-  <div *ngIf="locationSelected">
-    <app-location [location]="selected"
-    (locationEmitter)="saveLocation($event)"></app-location>
-  </div>
-</div>
+<!--<div class="col-md-8">-->
+<!--  <div *ngIf="locationSelected">-->
+<!--    <app-location [location]="selected"-->
+<!--    (locationEmitter)="saveLocation($event)"></app-location>-->
+<!--  </div>-->
+<!--</div>-->
 
 
 </div>

@@ -1,55 +1,56 @@
-
 <!--<h4>Thing List</h4>-->
-<button class="btn btn-outline-primary  my-2" (click)="create()">NeW</button>
+<button class="btn btn-outline-primary  my-2" (click)="create()">New</button>
 <div class="row gx-5">
-<div class="col-md-4">
+  <div class="col-md-4">
 
-  <div *ngIf="things$ | async as things">
-<table class="table table-dark table-hover table-group-divider align-middle table align-middle table-bordered">
-  <thead>
-  <tr>
-    <th>Name</th>
-<!--    <th>Author</th>-->
-<!--    <th>Genre</th>-->
-<!--    <th>Maguffin</th>-->
-<!--    <th>Summary</th>-->
-    <!--  <th>things</th>-->
-    <!--  <th>Scenes</th>-->
-    <!--  <th>People</th>-->
-    <!--  <th>Events</th>-->
-    <!--  <th>Locations</th>-->
-    <!--  <th>Things</th>-->
-  </tr>
-  </thead>
-  <tbody class="vertical-align: bottom">
+    <div *ngIf="things$ | async as things">
+      <table class="table table-light table-hover table-group-divider align-middle table align-middle table-bordered">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <!--    <th>Author</th>-->
+          <!--    <th>Genre</th>-->
+          <!--    <th>Maguffin</th>-->
+          <!--    <th>Summary</th>-->
+          <!--  <th>things</th>-->
+          <!--  <th>Scenes</th>-->
+          <!--  <th>People</th>-->
+          <!--  <th>Events</th>-->
+          <!--  <th>Locations</th>-->
+          <!--  <th>Things</th>-->
+        </tr>
+        </thead>
+        <tbody class="vertical-align: bottom">
 
-  <tr *ngFor="let thing of things">
-    <td><button class="nav-link link-primary" (click)="select(thing.id)">{{thing.name}}</button></td>
-<!--    <td>{{thing.author}}  </td>-->
-<!--    <td>{{thing.genre}}   </td>-->
-<!--    <td>{{thing.maguffin}}</td>-->
-<!--    <td>{{thing.summary}} </td>-->
-      <!--    Calculated fields
-      <td>{{thing.things}}<td>-->
-      <!--    <td>{{thing.Scenes}}<td>-->
-      <!--    <td>{{thing.People}}<td>-->
-      <!--    <td>{{thing.Events}}<td>-->
-      <!--    <td>{{thing.Locations}}<td>-->
-      <!--    <td>{{thing.Things}}<td>-->
-  </tr>
-<!--</div>-->
-  </tbody>
-</table>
-</div>
-
-
-
-<div class="col-md-8">
-  <div *ngIf="thingSelected">
-    <app-thing [thing]="selected"
-    (thingEmitter)="saveThing($event)"></app-thing>
+        <tr *ngFor="let thing of things">
+          <td>
+            <button class="nav-link link-primary" (click)="select(thing.id)">{{thing.name}}</button>
+          </td>
+          <!--    <td>{{thing.author}}  </td>-->
+          <!--    <td>{{thing.genre}}   </td>-->
+          <!--    <td>{{thing.maguffin}}</td>-->
+          <!--    <td>{{thing.summary}} </td>-->
+          <!--    Calculated fields
+          <td>{{thing.things}}<td>-->
+          <!--    <td>{{thing.Scenes}}<td>-->
+          <!--    <td>{{thing.People}}<td>-->
+          <!--    <td>{{thing.Events}}<td>-->
+          <!--    <td>{{thing.Locations}}<td>-->
+          <!--    <td>{{thing.Things}}<td>-->
+        </tr>
+        <!--</div>-->
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
+
+
+  <!--<div class="col-md-8">-->
+  <!--  <div *ngIf="thingSelected">-->
+  <!--    <app-thing [thing]="selected"-->
+  <!--    (thingEmitter)="saveThing($event)"></app-thing>-->
+  <!--  </div>-->
+  <!--</div>-->
 
 
 </div>

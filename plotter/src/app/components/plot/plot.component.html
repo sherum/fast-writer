@@ -2,13 +2,21 @@
 <div class="row">
 
 <div class="col-md-6">
-
-<form class="form">
+<!--<div *ngIf="plot$ |async as plot">-->
+<div *ngIf="plot">
+<form class="form" #form="ngForm">
         <div class="row g-3">
             <div class="col-sm-4">
             <div class=".form-floating">
                 <label for="name">Plot Name</label>
-                <input class="form-control" type="text" id="name" placeholder="name of plot" name="name"/>
+                <input class="form-control"
+                       type="text"
+                       required
+                       id="name"
+                       placeholder="name of plot"
+                       name="name"
+                      #name
+                [(ngModel)] ="plot.name"/>
             </div>
         </div>
         </div>
@@ -17,20 +25,23 @@
 
         <div class=".form-floating">
             <div class="col-md-4">
-                <label for="plot-type">Plot Type</label>
-                <select class="form-control" id="plot-type" name="plot-type">
-                    <option value="arc">Arc</option>
-                    <option value="character">Character</option>
-                    <option value="global">Global</option>
-                    <option value="local">Local</option>
-                    <option value="location">Location</option>
-                </select>
+                <label class="form-label" for="plot-type">Plot Type</label>
+                <select #plottype class="form-control" id="plot-type" name="plot-type" [(ngModel)]="plot.plotType">
+                    <option *ngFor="let val of plotTypes" value="{{val.name}}">
+              {{val.name}} </option>
+          </select>
             </div>
         </div>
         <div class="col-md-12">
             <label for="plotcomments">Description</label>
-            <textarea class="form-control" placeholder="Leave a description here" id="plotcomments" name="plotcomments"
-                      style="height: 100px" (blur)="showBuilder()"></textarea>
+            <textarea #plotcomments
+                      class="form-control"
+                      placeholder="Leave a description here"
+                      id="plotcomments"
+                      name="plotcomments"
+                      style="height: 100px" (blur)="showBuilder()"
+                      [(ngModel)]="plot.description"
+            ></textarea>
         </div>
         <div class="col-md-12">
 <!--            <button type="button" [routerLink]="['plotoptions']" class="btn btn-outline-default" id="default" name="subplot">Show Dashboard</button>-->
@@ -44,26 +55,26 @@
         </div>
 
     </form>
-
-        <div class="container my-3">
-            <div class="col-md-4">
-
-                <h3>Attached Subplots</h3>
-                <table class="table">
-                    <thead>
-                    <th>Name</th>
-                    <th>Update</th>
-                    <th>Remove</th>
-                    </thead>
-                    <tbody>
-                    <td>Romancing Laura</td>
-                    <td><a href="#">Update</a></td>
-                    <td><a href="#">Remove</a></td>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 </div>
+<!--        <div class="container my-3">-->
+<!--            <div class="col-md-4">-->
+
+<!--                <h3>Attached Subplots</h3>-->
+<!--                <table class="table">-->
+<!--                    <thead>-->
+<!--                    <th>Name</th>-->
+<!--                    <th>Update</th>-->
+<!--                    <th>Remove</th>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <td>Romancing Laura</td>-->
+<!--                    <td><a href="#">Update</a></td>-->
+<!--                    <td><a href="#">Remove</a></td>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--</div>-->
 <div class="col-md-6">
   <router-outlet></router-outlet>
 </div>

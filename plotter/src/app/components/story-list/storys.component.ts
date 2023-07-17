@@ -27,7 +27,7 @@ export class StorysComponent {
 
   activeStory$: Observable<IStory> = combineLatest([
     this.backend.stories$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$
   ]).pipe(
     map(([storys, selectedId]) =>
       storys.filter(story => story.id === selectedId)[0]

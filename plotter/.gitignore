@@ -5,7 +5,6 @@
 /tmp
 /out-tsc
 /bazel-out
-
 # Node
 /node_modules
 npm-debug.log
@@ -15,10 +14,10 @@ yarn-error.log
 .idea/
 .project
 .classpath
-.c9/
-*.launch
+.c9*.launch
 .settings/
 *.sublime-workspace
+/fast_ms/config.py
 
 # Visual Studio Code
 .vscode/*

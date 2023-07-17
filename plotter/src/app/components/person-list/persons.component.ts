@@ -20,7 +20,7 @@ personSelected:boolean = false;
 selected:ILocation|undefined;
 people$ = combineLatest([
     this.backend.testPersons$,
-    this.backend.selectedIdAction$
+    this.backend.selectedStoryIdAction$
   ]).pipe(
     map(([people, selectedId]) =>
       people.filter(person => person.storyId === selectedId)
@@ -31,7 +31,8 @@ create():void{
 }
 
 select(id:string):void{
-
+this.backend.onPersonSelected(id);
+  this.router.navigate(['/person',id]);
 }
 
 savePerson(event:IPerson):void{
