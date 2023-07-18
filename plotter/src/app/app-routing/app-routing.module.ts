@@ -20,12 +20,14 @@ import {LocationComponent} from "../components/location/location.component";
 import {ThingComponent} from "../components/thing/thing.component";
 import {PlotOptionsComponent} from "../components/plot-options/plot-options.component";
 import {BuilderComponent} from "../components/builder/builder.component";
+import {StoryDetailComponent} from "../components/story-detail/story-detail.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
 
 
   {path: 'storys', component: StorysComponent},
+  {path: 'story/:id', component: StoryComponent},
 
 
 
@@ -40,7 +42,8 @@ const routes: Routes = [
       },
     ]
   },
-  {path: 'plot/:id', component: PlotComponent,outlet:'details'},
+  {path: 'story-details', component: StoryDetailComponent,outlet:'details'},
+  {path: 'plot/:id', component: PlotComponent, outlet:'single'},
   {path: 'scene/:id', component: SceneComponent},
   {path: 'person/:id', component: PersonComponent},
   {path: 'event/:id', component: EventComponent},

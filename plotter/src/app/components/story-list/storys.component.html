@@ -1,0 +1,53 @@
+<button class="btn btn-primary  my-2" (click)="create()">New Story</button>
+ <div *ngIf="stories$ | async as stories">
+
+
+
+
+ <ul class="list-group list-group-horizontal my-2">
+  <li *ngFor="let story of stories" class="list-group-item nav-link link-primary" (click)="select(story.id)">{{story.title}}</li>
+
+</ul>
+
+
+<!--    <ul  class="list-group list-group-horizontal">-->
+<!--      <li class="list-group-item nav-link link-primary"> {{story.title}} </li>-->
+<!--    </ul>-->
+
+
+  </div>
+
+
+<!--      <table class="table table-light table-hover table-group-divider  table-bordered">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th>Story List</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr >-->
+<!--          <td>-->
+<!--            <button class="nav-link link-primary" (click)="select(story.id)">{{story.title}}</button>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+  <div class="col-md-8">
+    <div *ngIf="activeStory$| async as story">
+      <div *ngIf="!edit">
+        <app-story-summary [story]="story" (editStory)="displayToggle()"></app-story-summary>
+      </div>
+      <div *ngIf="edit">
+        <app-story [story]="story" (storyEmitter)="saveStory($event)"></app-story>
+      </div>
+
+    </div>
+  </div>
+
+
+<!--</div>-->
+

@@ -29,6 +29,8 @@ import { SceneBuilderComponent } from './components/scene-builder/scene-builder.
 import { EventBuilderComponent } from './components/event-builder/event-builder.component';
 import { PersonBuilderComponent } from './components/person-builder/person-builder.component';
 import { LocationBuilderComponent } from './components/location-builder/location-builder.component';
+import { StorySummaryComponent } from './components/story-summary/story-summary.component';
+import { StoryDetailComponent } from './components/story-detail/story-detail.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { LocationBuilderComponent } from './components/location-builder/location
     SceneBuilderComponent,
     EventBuilderComponent,
     PersonBuilderComponent,
-    LocationBuilderComponent
+    LocationBuilderComponent,
+    StorySummaryComponent,
+    StoryDetailComponent
   ],
   imports: [
     BrowserModule,

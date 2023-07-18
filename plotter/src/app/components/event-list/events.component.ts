@@ -18,7 +18,7 @@ export class EventsComponent {
 
   eventSelected: boolean = false;
   selected: IEvent | undefined;
-  event$ = combineLatest([
+  events$ = combineLatest([
     this.backend.events$,
     this.backend.selectedStoryIdAction$
   ]).pipe(

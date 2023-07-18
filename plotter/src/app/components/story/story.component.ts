@@ -59,7 +59,7 @@ export class StoryComponent {
   // );
 
   errorMessage="";
-  @Input() story: IStory = this.working;
+  @Input() story: IStory|undefined;
   @Output() storyEmitter: EventEmitter<IStory> = new EventEmitter<IStory>();
   plotCount:number =0
 

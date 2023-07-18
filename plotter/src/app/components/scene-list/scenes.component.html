@@ -1,30 +1,30 @@
 
 <!--<h4>Scene List</h4>-->
-<button class="btn btn btn-outline-primary  my-2" (click)="create()">New</button>
-<div class="row gx-5">
-<div class="col-md-4">
+<!--<button class="btn btn btn-sm btn-outline-primary  my-2" (click)="create()">New</button>-->
+<!--<div class="row gx-5">-->
+<!--<div class="col-md-4">-->
 
-  <div *ngIf="scenes$ | async as scenes">
-<table class="table table-light table-hover table-group-divider align-middle table align-middle table-bordered">
-  <thead>
-  <tr>
-    <th>Name</th>
+<!--  <div *ngIf="scenes$ | async as scenes">-->
+<!--<table class="table table-light table-hover table-group-divider align-middle table align-middle table-bordered">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th>Name</th>-->
 <!--    <th>Author</th>-->
 <!--    <th>Genre</th>-->
 <!--    <th>Maguffin</th>-->
 <!--    <th>Summary</th>-->
     <!--  <th>scenes</th>-->
     <!--  <th>Scenes</th>-->
-    <!--  <th>People</th>-->
+    <!--  <th>scenes</th>-->
     <!--  <th>Events</th>-->
     <!--  <th>Locations</th>-->
     <!--  <th>Things</th>-->
-  </tr>
-  </thead>
-  <tbody class="vertical-align: bottom">
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody class="vertical-align: bottom">-->
 
-  <tr *ngFor="let scene of scenes">
-    <td><button class="nav-link link-primary" (click)="select(scene.id)">{{scene.name}}</button></td>
+<!--  <ul *ngFor="let scene of scenes">-->
+<!--    <li><button class="nav-link link-primary" (click)="select(scene.id)">{{scene.name}}</button></li>-->
 <!--    <td>{{scene.author}}  </td>-->
 <!--    <td>{{scene.genre}}   </td>-->
 <!--    <td>{{scene.maguffin}}</td>-->
@@ -32,15 +32,15 @@
       <!--    Calculated fields
       <td>{{scene.scenes}}<td>-->
       <!--    <td>{{scene.Scenes}}<td>-->
-      <!--    <td>{{scene.People}}<td>-->
+      <!--    <td>{{scene.scenes}}<td>-->
       <!--    <td>{{scene.Events}}<td>-->
       <!--    <td>{{scene.Locations}}<td>-->
       <!--    <td>{{scene.Things}}<td>-->
-  </tr>
+<!--  </tr>-->
 <!--</div>-->
-  </tbody>
-</table>
-</div>
+<!--  </tbody>-->
+<!--</table>-->
+<!--</div>-->
 
 
 
@@ -52,5 +52,12 @@
 <!--</div>-->
 
 
-</div>
+<!--</div>-->
 
+
+<button class="link-primary  my-2" (click)="create()">Scenes</button>
+<div *ngIf="scenes$ | async as scenes">
+ <div class="list-group" *ngFor="let scene of scenes">
+   <a class="list-group-item list-group-item-action my-1" (click)="select(scene.id)">{{scene.name}}</a>
+ </div>
+</div>

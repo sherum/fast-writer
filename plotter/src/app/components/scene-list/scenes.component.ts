@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {IScene} from "../../models/scene";
 import {Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
-import {combineLatest, map} from "rxjs";
+import {combineLatest, map, Observable} from "rxjs";
+import {testScenes} from "../../data/sample.data";
 
 
 @Component({
@@ -16,7 +17,7 @@ export class ScenesComponent {
 
 
   selected: IScene | undefined;
-  scenes$ = combineLatest([
+  scenes$:Observable<IScene[]> = combineLatest([
     this.backend.scenes$,
     this.backend.selectedStoryIdAction$
   ]).pipe(
