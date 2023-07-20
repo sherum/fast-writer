@@ -23,41 +23,33 @@ import {BuilderComponent} from "../components/builder/builder.component";
 import {StoryDetailComponent} from "../components/story-detail/story-detail.component";
 
 const routes: Routes = [
+  {path: 'plot/:id', component: PlotComponent, outlet:'single'},
+  {path: 'scene/:id', component: SceneComponent, outlet:'single'},
+  {path: 'person/:id', component: PersonComponent, outlet:'single'},
+
+
+  {path: 'event/:id', component: EventComponent, outlet:'single'},
+  {path: 'location/:id', component: LocationComponent, outlet:'single'},
+  {path: 'thing/:id', component: ThingComponent, outlet:'single'},
+  {path: 'storys', component: StorysComponent},
   {path: 'home', component: HomeComponent},
 
 
-  {path: 'storys', component: StorysComponent},
-  {path: 'story/:id', component: StoryComponent},
 
-
-
-  {path: 'scene-list/:id', component: SceneComponent},
-  {
-    path: 'plots/:id/edit', component: PlotComponent,
-    children: [
-      {
-        path: 'plotoptions', component: PlotOptionsComponent, children: [
-          {path: 'build/:itemId', component: BuilderComponent}
-        ]
-      },
-    ]
-  },
   {path: 'story-details', component: StoryDetailComponent,outlet:'details'},
-  {path: 'plot/:id', component: PlotComponent, outlet:'single'},
-  {path: 'scene/:id', component: SceneComponent},
-  {path: 'person/:id', component: PersonComponent},
-  {path: 'event/:id', component: EventComponent},
-  {path: 'location/:id', component: LocationComponent},
-  {path: 'thing/:id', component: ThingComponent},
-  // {path: 'storys/:id', component: StoryComponent},
-  // {path: 'scenes', component: ScenesComponent},
-  // {path: 'plots', component: PlotsComponent},
-  // {path: 'persons', component: PersonsComponent},
-  // {path: 'events', component: EventsComponent},
-  // {path: 'locations', component: LocationsComponent},
-  // {path: 'things', component: ThingsComponent},
-
-
+  {path: 'plotoptions', component: PlotOptionsComponent,outlet:'builder'},
+  // {
+  //   path: 'plots/:id/edit', component: PlotComponent,
+  //   children: [
+  //     {
+  //       path: 'plotoptions', component: PlotOptionsComponent, children: [
+  //         {path: 'build/:itemId', component: BuilderComponent}
+  //       ]
+  //     },
+  //   ]
+  // },
+  {path: 'story/:id', component: StoryComponent},
+  {path: 'scene-list/:id', component: SceneComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ]
@@ -66,7 +58,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, {enableTracing: true}),
+    RouterModule.forRoot(routes, {enableTracing: false}),
   ],
   exports: [
     RouterModule

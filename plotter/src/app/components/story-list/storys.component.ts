@@ -15,61 +15,47 @@ import {Router} from "@angular/router";
 })
 export class StorysComponent {
 
+
   constructor(private backend: BackendService, private common: CommonService, private router: Router) {
   }
 
   edit = false;
 
-  displayToggle(): void {
-    console.log("The edit button was pushed when it equaled ", this.edit);
-    this.edit = !this.edit;
-    console.log("Now the edit value is ", this.edit);
-    if (this.edit) {
+  displayDetail(): void {
       this.router.navigate([{outlets: {details: ['story-details']}}]);
-    } else {
-      this.router.navigate([{outlets: {details: null}}]);
-    }
-
-    }
-    errorMessage = ""
-    stories$ = this.backend.stories$.pipe(
-      catchError(err => {   //an arrow function followed by { implies a function
-        this.errorMessage = err;    //to signify an object literal => ({ }) surround the braces with parens
-        return EMPTY
-      })
-    );
-
-    activeStory$: Observable < IStory > = combineLatest([
-      this.backend.stories$,
-      this.backend.selectedStoryIdAction$
-    ]).pipe(
-      map(([storys, selectedId]) =>
-        storys.filter(story => story.id === selectedId)[0]
-      ));
-
-    select(sid
-  :
-    string
-  ):
-    void {
-      if(this.edit
-  )
-    {
-      this.displayToggle();
-    }
-    this.backend.onSelected(sid);
+      this.edit = true;
   }
 
-    saveStory(insertAction
-  :
-    IStory
-  ):
-    void {
+  hideDetail():void{
+    this.router.navigateByUrl('/storys');
+    this.edit = false;
+  }
 
-      console.log("Inserted Action: ", insertAction);
-      let insertAction$
-  :
-    Observable < IStory > = of(insertAction);
+
+  errorMessage = ""
+  stories$ = this.backend.stories$.pipe(
+    catchError(err => {   //an arrow function followed by { implies a function
+      this.errorMessage = err;    //to signify an object literal => ({ }) surround the braces with parens
+      return EMPTY
+    })
+  );
+
+  activeStory$: Observable<IStory> = combineLatest([
+    this.backend.stories$,
+    this.backend.selectedStoryIdAction$
+  ]).pipe(
+    map(([storys, selectedId]) =>
+      storys.filter(story => story.id === selectedId)[0]
+    ));
+
+  select(sid: string): void {
+   this.backend.onSelected(sid);
+  }
+
+  saveStory(insertAction: IStory): void {
+
+    console.log("Inserted Action: ", insertAction);
+    let insertAction$: Observable<IStory> = of(insertAction);
     merge(
       this.stories$,
       insertAction$,
@@ -79,14 +65,14 @@ export class StorysComponent {
     );
   }
 
-    create()
-    {
-      this.saveStory(newStory);
-
-    }
-
-    // saveStory(event:IStory){
-    //   this.backend.save("stories",event);
-    // }
+  create() {
+    this.saveStory(newStory);
 
   }
+
+
+  // saveStory(event:IStory){
+  //   this.backend.save("stories",event);
+  // }
+
+}

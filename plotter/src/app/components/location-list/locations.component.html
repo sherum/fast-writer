@@ -55,7 +55,7 @@
 
 
 
-<button class="link-primary  my-2" (click)="create()">Locations</button>
+<button class="link-primary rounded  my-2" (click)="create()" data-bs-toggle="tooltip" data-bs-placement="top" title="Create New Location">Locations</button>
 
  <div *ngIf="locations$ | async as locations">
  <div class="list-group" *ngFor="let location of locations">

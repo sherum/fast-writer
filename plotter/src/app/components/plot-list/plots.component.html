@@ -56,7 +56,7 @@
 
 
 <!--</div>-->
-<button class="link-primary  my-2" (click)="create()">Plots</button>
+<button class="link-primary rounded  my-2" (click)="create()" data-bs-toggle="tooltip" data-bs-placement="top" title="Create New Plot">Plots</button>
 
  <div *ngIf="plots$ | async as plots">
  <div class="list-group" *ngFor="let plot of plots">

@@ -58,7 +58,7 @@
 
 
 
-<button class="link-primary  my-2" (click)="create()">People</button>
+<button class="link-primary rounded  my-2" (click)="create()" data-bs-toggle="tooltip" data-bs-placement="top" title="Create New Person">People</button>
 <div *ngIf="people$ | async as persons">
  <div class="list-group" *ngFor="let person of persons">
    <a class="list-group-item list-group-item-action my-1" (click)="select(person.id)">{{person.name}}</a>

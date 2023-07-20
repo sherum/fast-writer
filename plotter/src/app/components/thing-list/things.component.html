@@ -57,7 +57,7 @@
 
 
 
-<button class="link-primary  my-2" (click)="create()">Things</button>
+<button class="link-primary rounded my-2" (click)="create()" data-bs-toggle="tooltip" data-bs-placement="top" title="Create New Thing">Things</button>
 
 <div *ngIf="things$ | async as things">
  <div class="list-group" *ngFor="let thing of things">

@@ -38,6 +38,7 @@ create():void{
 }
 
 select(id:string):void{
+  this.router.navigate([{outlets:{single:null}}]);
   this.backend.onPlotSelected(id);
   this.router.navigate([{outlets:{single:['plot',id]}}]);
 

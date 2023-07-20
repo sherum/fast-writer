@@ -1,25 +1,79 @@
-<p>person works!</p>
-
-
-<div class="col-md-3">
 <!--<div *ngIf="plot$ |async as scene">-->
 <div *ngIf="person">
-<form class="form" #form="ngForm">
-        <div class="row g-3">
-            <div class="col-sm-4">
-            <div class=".form-floating">
-                <label for="name">Person Name</label>
-                <input class="form-control"
-                       type="text"
-                       required
-                       id="name"
-                       placeholder="name of person"
-                       name="name"
-                      #name
-                [(ngModel)] ="person.name"/>
-            </div>
+  <form class="form" #form="ngForm">
+    <div class="row">
+      <div class=".form-floating">
+        <div class="col-md-2">
+          <label class="form-label" for="person-role">Character Type</label>
+          <select #personrole class="form-control" id="person-role" name="person-role" (change)="flip()" [(ngModel)]="person.role">
+            <!--                    <option *ngFor="let val of plotTypes" value="{{val.name}}">{{val.name}} </option>-->
+            <option value="main">Main</option>
+            <option value="supp">Supporting</option>
+            <option value="oneshot">One-Shot</option>
+          </select>
         </div>
+      </div>
+
+    <div *ngIf="!isOneShot" class="col-md-3">
+      <div class=".form-floating">
+        <label for="name">Person Name</label>
+        <input class="form-control"
+        type="text"
+        required
+        id="name"
+        placeholder="name of person"
+        name="name"
+        #name
+        [(ngModel)]="person.name"/>
+      </div>
+    </div>
+
+
+    <div *ngIf="isOneShot" class="col-md-3">
+      <div class=".form-floating">
+        <label for="name">Name or Notable Feature</label>
+        <input class="form-control"
+        type="text"
+        required
+        id="name"
+        placeholder="name of person"
+        name="name"
+        #name
+        [(ngModel)]="person.name"/>
+      </div>
+    </div>
+      </div>
+
+
+        <div *ngIf="!isOneShot" class="col-md-4">
+          <div class=".form-floating">
+            <label for="description">Description</label>
+            <textarea class="form-control"
+                      rows="4"
+                      required
+                      id="description"
+                      placeholder="description of person"
+                      name="description"
+                      #description
+                      [(ngModel)]="person.description"
+            ></textarea>
+          </div>
         </div>
-</form>
+
+    <div *ngIf="isOneShot" class="col-md-4">
+          <div class=".form-floating">
+            <label for="description">Character Purpose</label>
+            <textarea class="form-control"
+                      rows="4"
+                      required
+                      id="description"
+                      placeholder="purpose in scene"
+                      name="description"
+                      #description
+                      [(ngModel)]="person.description"
+            ></textarea>
+          </div>
+        </div>
+  </form>
 </div>
-</div>
+

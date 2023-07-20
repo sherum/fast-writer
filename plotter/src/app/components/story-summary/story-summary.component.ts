@@ -11,13 +11,13 @@ import {EventComponent} from "../event/event.component";
 })
 export class StorySummaryComponent {
   @Input() story:IStory|undefined;
-  @Output() editStory:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() editStory:EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private route:Router) { }
 
-  edit():void {
+  showDetail():void {
     console.log("Clicked that display toggle")
-    this.editStory.emit(true);
+    this.editStory.emit();
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IScene} from "../../models/scene";
 import {Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
@@ -17,7 +17,7 @@ export class ScenesComponent {
 
 
   selected: IScene | undefined;
-  scenes$:Observable<IScene[]> = combineLatest([
+  scenes$: Observable<IScene[]> = combineLatest([
     this.backend.scenes$,
     this.backend.selectedStoryIdAction$
   ]).pipe(
@@ -30,8 +30,9 @@ export class ScenesComponent {
   }
 
   select(id: string): void {
+    this.router.navigate([{outlets: {single: null}}]);
     this.backend.onSceneSelected(id);
-    this.router.navigate(['/scene', id]);
+   this.router.navigate([{outlets:{single:['scene',id]}}]);
   }
 
 // saveScene(event:IScene):void{

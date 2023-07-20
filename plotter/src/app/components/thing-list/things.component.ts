@@ -13,10 +13,12 @@ import {BackendService} from "../../services/backend.service";
   styleUrls: ['./things.component.css']
 })
 export class ThingsComponent {
-  constructor(private router:Router,private backend:BackendService) {}
-  thingSelected:boolean = false;
-selected:ILocation|undefined;
-things$ = combineLatest([
+  constructor(private router: Router, private backend: BackendService) {
+  }
+
+  thingSelected: boolean = false;
+  selected: ILocation | undefined;
+  things$ = combineLatest([
     this.backend.things$,
     this.backend.selectedStoryIdAction$
   ]).pipe(
@@ -29,11 +31,12 @@ things$ = combineLatest([
   }
 
   select(id: string): void {
+    this.router.navigate([{outlets: {single: null}}]);
     this.backend.onThingSelected(id);
-    this.router.navigate(['/thing', id]);
+    this.router.navigate([{outlets: {single: ['thing', id]}}]);
   }
 
-  saveThing(thing:IThing): void {
+  saveThing(thing: IThing): void {
 
   }
 }
