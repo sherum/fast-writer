@@ -3,19 +3,34 @@ import {IStory} from "../../models/story";
 import {BackendService} from "../../services/backend.service";
 import {ICredentials} from "../../user/credentials";
 import {testStorys, newStory} from "../../data/sample.data";
-import {catchError, combineLatest, EMPTY, Observable, map, merge,scan,of,tap} from "rxjs";
+import {catchError, combineLatest, EMPTY, Observable, map, merge, scan, of, tap} from "rxjs";
 import {CommonService} from "../../services/common.service";
+import {Router} from "@angular/router";
 
 
 @Component({
   selector: 'app-storys',
-  templateUrl: './story-list.component.html',
-  styleUrls: ['./story-list.component.css']
+  templateUrl: './storys.component.html',
+  styleUrls: ['./storys.component.css']
 })
 export class StorysComponent {
 
-  constructor(private backend: BackendService, private common: CommonService) {
+
+  constructor(private backend: BackendService, private common: CommonService, private router: Router) {
   }
+
+  edit = false;
+
+  displayDetail(): void {
+      this.router.navigate([{outlets: {details: ['story-details']}}]);
+      this.edit = true;
+  }
+
+  hideDetail():void{
+    this.router.navigateByUrl('/storys');
+    this.edit = false;
+  }
+
 
   errorMessage = ""
   stories$ = this.backend.stories$.pipe(
@@ -34,21 +49,19 @@ export class StorysComponent {
     ));
 
   select(sid: string): void {
-    this.backend.onSelected(sid);
+   this.backend.onSelected(sid);
   }
 
   saveStory(insertAction: IStory): void {
 
-    console.log("Inserted Action: ",insertAction);
+    console.log("Inserted Action: ", insertAction);
     let insertAction$: Observable<IStory> = of(insertAction);
     merge(
       this.stories$,
       insertAction$,
     ).pipe(
-           scan((acc, value) => (value instanceof Array) ?
+      scan((acc, value) => (value instanceof Array) ?
         [...value] : [...acc, value], [] as IStory[]),
-
-
     );
   }
 
@@ -56,6 +69,7 @@ export class StorysComponent {
     this.saveStory(newStory);
 
   }
+
 
   // saveStory(event:IStory){
   //   this.backend.save("stories",event);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IThing} from "../../models/thing";
 import {NgForm} from "@angular/forms";
 import {IPerson} from "../../models/person";
@@ -14,11 +14,12 @@ import {BackendService} from "../../services/backend.service";
 })
 export class PersonsComponent {
 
-  constructor(private router:Router,private backend:BackendService) {
-}
-personSelected:boolean = false;
-selected:ILocation|undefined;
-people$ = combineLatest([
+  constructor(private router: Router, private backend: BackendService) {
+  }
+
+  personSelected: boolean = false;
+  selected: ILocation | undefined;
+  people$ = combineLatest([
     this.backend.testPersons$,
     this.backend.selectedStoryIdAction$
   ]).pipe(
@@ -26,16 +27,17 @@ people$ = combineLatest([
       people.filter(person => person.storyId === selectedId)
     ));
 
-create():void{
+  create(): void {
 
-}
+  }
 
-select(id:string):void{
-this.backend.onPersonSelected(id);
-  this.router.navigate(['/person',id]);
-}
+  select(id: string): void {
+    this.router.navigate([{outlets: {single: null}}]);
+    this.backend.onPersonSelected(id);
+    this.router.navigate([{outlets: {single: ['person', id]}}]);
+  }
 
-savePerson(event:IPerson):void{
+  savePerson(event: IPerson): void {
 
-}
+  }
 }

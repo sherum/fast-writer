@@ -1,9 +1,9 @@
-<div class="col-md-3">
+<div class="col-md-6">
 <!--<div *ngIf="plot$ |async as scene">-->
 <div *ngIf="thing">
 <form class="form" #form="ngForm">
-        <div class="row g-3">
-            <div class="col-sm-4">
+        <div class="row">
+            <div class="col-md-6">
             <div class=".form-floating">
                 <label for="name">Thing Name</label>
                 <input class="form-control"
@@ -16,6 +16,17 @@
                 [(ngModel)] ="thing.name"/>
             </div>
         </div>
+
+          <div class="col-md-12">
+            <label for="thingfunction">Thing Function</label>
+            <textarea #plotcomments
+                      class="form-control"
+                      placeholder="raison d'être"
+                      id="thingfunction"
+                      name="thingfunction"
+                      [(ngModel)]="thing.function"
+            ></textarea>
+          </div>
         </div>
 </form>
 </div>

@@ -1,55 +1,65 @@
-<!--<h4>location List</h4>-->
-<button class="btn btn-outline-primary my-2" (click)="create()">New</button>
-<div class="row gx-5">
-<div class="col-md-4">
+<!--&lt;!&ndash;<h4>location List</h4>&ndash;&gt;-->
+<!--<button class="btn btn-sm btn-outline-primary my-2" (click)="create()">New</button>-->
+<!--<div class="row gx-5">-->
+<!--<div class="col-md-4">-->
 
-  <div *ngIf="locations$ | async as locations">
-<table class="table table-light table-hover table-group-divider align-middle table align-middle table-bordered">
-  <thead>
-  <tr>
-    <th>Name</th>
-<!--    <th>Author</th>-->
-<!--    <th>Genre</th>-->
-<!--    <th>Maguffin</th>-->
-<!--    <th>Summary</th>-->
-    <!--  <th>locations</th>-->
-    <!--  <th>Scenes</th>-->
-    <!--  <th>People</th>-->
-    <!--  <th>Events</th>-->
-    <!--  <th>Locations</th>-->
-    <!--  <th>Things</th>-->
-  </tr>
-  </thead>
+<!--  <div *ngIf="locations$ | async as locations">-->
+<!--<table class="table table-light table-hover table-group-divider align-middle table align-middle table-bordered">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th>Name</th>-->
+<!--&lt;!&ndash;    <th>Author</th>&ndash;&gt;-->
+<!--&lt;!&ndash;    <th>Genre</th>&ndash;&gt;-->
+<!--&lt;!&ndash;    <th>Maguffin</th>&ndash;&gt;-->
+<!--&lt;!&ndash;    <th>Summary</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>locations</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>Scenes</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>locations</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>Events</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>Locations</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>Things</th>&ndash;&gt;-->
+<!--  </tr>-->
+<!--  </thead>-->
 
-  <tbody class="vertical-align: bottom">
-  <tr *ngFor="let location of locations">
-    <td><button class="nav-link link-primary" (click)="select(location.id)">{{location.name}}</button></td>
-<!--    <td>{{location.author}}  </td>-->
-<!--    <td>{{location.genre}}   </td>-->
-<!--    <td>{{location.maguffin}}</td>-->
-<!--    <td>{{location.summary}} </td>-->
-      <!--    Calculated fields
-      <td>{{location.locations}}<td>-->
-      <!--    <td>{{location.Scenes}}<td>-->
-      <!--    <td>{{location.People}}<td>-->
-      <!--    <td>{{location.Events}}<td>-->
-      <!--    <td>{{location.Locations}}<td>-->
-      <!--    <td>{{location.Things}}<td>-->
-  </tr>
-<!--</div>-->
-  </tbody>
-</table>
-</div>
-
-
-
-<!--<div class="col-md-8">-->
-<!--  <div *ngIf="locationSelected">-->
-<!--    <app-location [location]="selected"-->
-<!--    (locationEmitter)="saveLocation($event)"></app-location>-->
-<!--  </div>-->
+<!--  <tbody class="vertical-align: bottom">-->
+<!--  <tr *ngFor="let location of locations">-->
+<!--    <td><button class="nav-link link-primary" (click)="select(location.id)">{{location.name}}</button></td>-->
+<!--&lt;!&ndash;    <td>{{location.author}}  </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    <td>{{location.genre}}   </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    <td>{{location.maguffin}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;    <td>{{location.summary}} </td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    Calculated fields-->
+<!--      <td>{{location.locations}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{location.Scenes}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{location.locations}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{location.Events}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{location.Locations}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{location.Things}}<td>&ndash;&gt;-->
+<!--  </tr>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--  </tbody>-->
+<!--</table>-->
 <!--</div>-->
 
 
-</div>
+
+<!--&lt;!&ndash;<div class="col-md-8">&ndash;&gt;-->
+<!--&lt;!&ndash;  <div *ngIf="locationSelected">&ndash;&gt;-->
+<!--&lt;!&ndash;    <app-location [location]="selected"&ndash;&gt;-->
+<!--&lt;!&ndash;    (locationEmitter)="saveLocation($event)"></app-location>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+<!--</div>-->
+
+
+
+<button class="link-primary rounded  my-2" (click)="create()" data-bs-toggle="tooltip" data-bs-placement="top" title="Create New Location">Locations</button>
+
+ <div *ngIf="locations$ | async as locations">
+ <div class="list-group" *ngFor="let location of locations">
+   <a class="list-group-item list-group-item-action my-1" (click)="select(location.id)">{{location.name}}</a>
+ </div>
+
 

@@ -1,85 +1,72 @@
-
 <h4>Scene</h4>
 
 <div class="row">
 
-<div class="col-md-6">
-<!--<div *ngIf="plot$ |async as scene">-->
-<div *ngIf="scene">
-<form class="form" #form="ngForm">
-        <div class="row g-3">
-            <div class="col-sm-4">
+  <div class="col-md-6">
+    <!--<div *ngIf="plot$ |async as scene">-->
+    <div *ngIf="scene">
+      <form class="form" #form="ngForm">
+        <div class="row">
+
+          <div class="col-md-4">
+
             <div class=".form-floating">
-                <label for="name">scene Name</label>
-                <input class="form-control"
-                       type="text"
-                       required
-                       id="name"
-                       placeholder="name of scene"
-                       name="name"
-                      #name
-                [(ngModel)] ="scene.name"/>
+              <label for="linkedplot">Linked Plot</label>
+              <input class="form-control"
+                     type="text"
+                     required
+                     id="linkedplot"
+                     placeholder="placeholder for select"
+                     name="linkedplot"
+                     #linkedplot
+                     [(ngModel)]="scene.linkedPlot"/>
             </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class=".form-floating">
+              <label for="name">Scene Name</label>
+              <input class="form-control"
+                     type="text"
+                     required
+                     id="name"
+                     placeholder="name of scene"
+                     name="name"
+                     #name
+                     [(ngModel)]="scene.name"/>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class=".form-floating">
+              <label for="dtg">Scene Date</label>
+              <input class="form-control"
+                     type="date"
+                     id="dtg"
+                     placeholder="name of scene"
+                     name="dtg"
+                     #dtg
+                     [(ngModel)]="scene.date"/>
+            </div>
+          </div>
         </div>
-        </div>
-</form>
-</div>
+
+          <div class="col-md-12">
+            <label for="scenesummary">Scene Summary</label>
+            <textarea #plotcomments
+                      class="form-control"
+                      placeholder="Moving the plot forward"
+                      id="scenesummary"
+                      name="scenesummary"
+                      [(ngModel)]="scene.summary"
+            ></textarea>
+          </div>
+      </form>
+    </div>
 
 
-<!--        <div class=".form-floating">-->
-<!--            <div class="col-md-4">-->
-<!--                <label class="form-label" for="scene-type">scene Type</label>-->
-<!--                <select #plottype class="form-control" id="scene-type" name="scene-type" [(ngModel)]="scene.plotType">-->
-<!--                    <option *ngFor="let val of plotTypes" value="{{val.name}}">-->
-<!--              {{val.name}} </option>-->
-<!--          </select>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="col-md-12">-->
-<!--            <label for="plotcomments">Description</label>-->
-<!--            <textarea #plotcomments-->
-<!--                      class="form-control"-->
-<!--                      placeholder="Leave a description here"-->
-<!--                      id="plotcomments"-->
-<!--                      name="plotcomments"-->
-<!--                      style="height: 100px" (blur)="showBuilder()"-->
-<!--                      [(ngModel)]="scene.description"-->
-<!--            ></textarea>-->
-<!--        </div>-->
-<!--        <div class="col-md-12">-->
-<!--&lt;!&ndash;            <button type="button" [routerLink]="['plotoptions']" class="btn btn-outline-default" id="default" name="subplot">Show Dashboard</button>&ndash;&gt;-->
-<!--          <div class="col-sm-12 ">-->
-<!--            <label for="isPrimary" class="form-check-label my-4">Is Primary</label>-->
-<!--            <input type="checkbox" class="form-check-input my-4" id="isPrimary" value="" name="isPrimary"/>-->
-<!--          </div>-->
-
-<!--            <button type="button" class="btn btn-outline-secondary" id="subplot" name="subplot">Add Subplot</button>-->
-<!--            <button type="submit" class="btn btn-outline-primary" id="plotter" name="plotter">Create</button>-->
-<!--        </div>-->
-
-<!--    </form>-->
-<!--</div>-->
-<!--        <div class="container my-3">-->
-<!--            <div class="col-md-4">-->
-
-<!--                <h3>Attached Subplots</h3>-->
-<!--                <table class="table">-->
-<!--                    <thead>-->
-<!--                    <th>Name</th>-->
-<!--                    <th>Update</th>-->
-<!--                    <th>Remove</th>-->
-<!--                    </thead>-->
-<!--                    <tbody>-->
-<!--                    <td>Romancing Laura</td>-->
-<!--                    <td><a href="#">Update</a></td>-->
-<!--                    <td><a href="#">Remove</a></td>-->
-<!--                    </tbody>-->
-<!--                </table>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--</div>-->
-<div class="col-md-6">
-  <router-outlet></router-outlet>
-</div>
-</div>
+    <!--<div class="col-md-6">-->
+    <!--  <router-outlet></router-outlet>-->
+    <!--</div>-->
+  </div>
 </div>

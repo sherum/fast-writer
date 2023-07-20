@@ -1,87 +1,117 @@
-<div *ngIf="selectedStory">
-<nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/home">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page"  routerLink="/storys">Stories</a>
-        </li>
+<div class="header">
 
 
-        <li class="nav-item">
-          <a class="nav-link"    routerLink="/scenes">Scenes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/plots">Plots</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="/persons">People</a></li>
-            <li><a class="dropdown-item" routerLink="/events">Events</a></li>
-            <li><a class="dropdown-item" routerLink="/locations">Locations</a></li>
-            <li><a class="dropdown-item" routerLink="/Things">Things</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+  <div *ngIf="selectedStory">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/home">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/storys">Stories</a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/scenes">Scenes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/plots">Plots</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" routerLink="/persons">People</a></li>
+                <li><a class="dropdown-item" routerLink="/events">Events</a></li>
+                <li><a class="dropdown-item" routerLink="/locations">Locations</a></li>
+                <li><a class="dropdown-item" routerLink="/Things">Things</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" (click)="logIn()" tabindex="-1">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="logOut()" tabindex="-1">Logout</a>
+            </li>
           </ul>
-        </li>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="filter string" aria-label="filter">
+            <button class="btn btn-outline-success" type="submit">Filter</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div *ngIf="!selectedStory">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/home">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/storys">Stories</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" (click)="logIn()" tabindex="-1">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="logOut()" tabindex="-1">Logout</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="filter" aria-label="filter">
+            <button class="btn btn-outline-success" type="submit">Filter</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
 
 
-        <li class="nav-item">
-          <a class="nav-link"  (click)="logIn()" tabindex="-1">Login</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" (click)="logOut()" tabindex="-1">Logout</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+
+<div class="container-fluid">
+  <div class="row my-2">
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col">
+      <router-outlet name="single"></router-outlet>
     </div>
   </div>
-</nav>
-</div>
-<div *ngIf="!selectedStory">
-<nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/home">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page"  routerLink="/storys">Stories</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link"  (click)="logIn()" tabindex="-1">Login</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" (click)="logOut()" tabindex="-1">Logout</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
+    <div class="row">
+  <div class="col-md-8">
+    <router-outlet name="details"></router-outlet>
   </div>
-</nav>
+  <div class="col">
+    <router-outlet name="builder"></router-outlet>
+  </div>
+
+
+
+  </div>
+
 </div>
 
-<router-outlet></router-outlet>
-
-<div class="container">
-  <router-outlet name="details"></router-outlet>
-</div>
 

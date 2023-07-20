@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IPerson} from "../../models/person";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
 import {combineLatest, map, tap} from "rxjs";
 
@@ -10,9 +10,10 @@ import {combineLatest, map, tap} from "rxjs";
   templateUrl: './person.component.html',
   styleUrls: ['./person.component.css']
 })
-export class PersonComponent implements OnInit{
-
-constructor(private router: Router, private backend: BackendService) {}
+export class PersonComponent implements OnInit {
+ isOneShot = false;
+  constructor(private router: Router, private backend: BackendService, private route: ActivatedRoute) {
+  }
 
   people$ = combineLatest([
     this.backend.testPersons$,
@@ -20,21 +21,31 @@ constructor(private router: Router, private backend: BackendService) {}
   ]).pipe(
     map(([people, selectedId]) =>
       people.filter(person => person.storyId === selectedId)),
-      tap(item => console.log("story person list",item)));
+    tap(item => console.log("story person list", item)));
 
-  person:IPerson|undefined;
+  person: IPerson | undefined;
 
   ngOnInit(): void {
     let pid = "";
-    let plist:IPerson[]|undefined;
+    let plist: IPerson[] | undefined;
     let index = 0;
-    this.backend.selectedPersonIdAction$.subscribe(item => pid = item);
-    console.log("THis is the pid", pid);
+    // this.backend.selectedPersonIdAction$.subscribe(item => pid = item);
+    // console.log("THis is the pid", pid);
     this.backend.testPersons$.subscribe(people => plist = people);
-    index = plist.findIndex((person:IPerson) =>person.id === pid);
-    this.person = plist[index];
-    console.log("THis is the person: ", this.person);
+    this.route.paramMap.subscribe(params => {
+      pid = params.get('id');
+      index = plist.findIndex((person: IPerson) => person.id === pid);
+      this.person = plist[index];
+      console.log("THis is the person: ", this.person);
 
+    });
+  }
+  flip():void{
+    if (this.person.role == 'oneshot'){
+      this.isOneShot = true;
+    }else{
+      this.isOneShot = false;
+    }
   }
 
 }

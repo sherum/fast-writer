@@ -38,12 +38,15 @@ export class PlotComponent implements  OnInit{
     let pid = "";
     let plist:IPlot[]|undefined;
     let index = 0;
-    this.backend.selectedPlotIdAction$.subscribe(item => pid = item);
-    console.log("THis is the pid", pid);
+    // this.backend.selectedPlotIdAction$.subscribe(item => pid = item);
+    // console.log("THis is the pid", pid);
     this.backend.plots$.subscribe(plots => plist = plots);
-    index = plist.findIndex((plot:IPlot) =>plot.id === pid);
-    this.plot = plist[index];
-    console.log("THis is the plot: ", this.plot);
+    this.route.paramMap.subscribe(params=>{
+      pid = params.get('id');
+      index = plist.findIndex((plot:IPlot) =>plot.id === pid);
+      this.plot = plist[index];
+      console.log("THis is the plot: ", this.plot);
+    });
 
   }
 
@@ -56,7 +59,7 @@ export class PlotComponent implements  OnInit{
   showBuilder():
     void {
     console.log("show builder")
-    this.router.navigate(['/plots', 0, 'edit', 'plotoptions']);
+    this.router.navigate([{outlets: {builder: ['plotoptions']}}]);
   }
 
 }

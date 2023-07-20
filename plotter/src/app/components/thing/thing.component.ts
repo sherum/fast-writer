@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {IThing} from "../../models/thing";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
 import {combineLatest, map, tap} from "rxjs";
 
@@ -12,7 +12,8 @@ import {combineLatest, map, tap} from "rxjs";
 })
 export class ThingComponent implements OnInit{
 
-constructor(private router: Router, private backend: BackendService) {}
+  constructor(private router: Router, private backend: BackendService,private route:ActivatedRoute) {
+  }
 
   things$ = combineLatest([
     this.backend.things$,
@@ -20,21 +21,23 @@ constructor(private router: Router, private backend: BackendService) {}
   ]).pipe(
     map(([things, selectedId]) =>
       things.filter(thing => thing.storyId === selectedId)),
-      tap(item => console.log("story thing list",item)));
+    tap(item => console.log("story thing list", item)));
 
-  thing:IThing|undefined;
+  thing: IThing | undefined;
 
   ngOnInit(): void {
     let pid = "";
-    let plist:IThing[]|undefined;
+    let plist: IThing[] | undefined;
     let index = 0;
-    this.backend.selectedThingIdAction$.subscribe(item => pid = item);
-    console.log("THis is the pid", pid);
+    // this.backend.selectedThingIdAction$.subscribe(item => pid = item);
+    // console.log("THis is the pid", pid);
     this.backend.things$.subscribe(things => plist = things);
-    index = plist.findIndex((thing:IThing) =>thing.id === pid);
-    this.thing = plist[index];
-    console.log("THis is the thing: ", this.thing);
+    this.route.paramMap.subscribe(params => {
+      pid = params.get('id');
+      index = plist.findIndex((thing: IThing) => thing.id === pid);
+      this.thing = plist[index];
+      console.log("THis is the thing: ", this.thing);
 
+    });
   }
-
-}
+  }

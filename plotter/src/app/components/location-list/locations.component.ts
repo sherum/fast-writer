@@ -23,16 +23,17 @@ export class LocationsComponent {
   ]).pipe(
     map(([locations, selectedId]) =>
       locations.filter(location => location.storyId === selectedId)),
-       tap(item => console.log("story locations list",item)));
+    tap(item => console.log("story locations list", item)));
 
   create(): void {
 
   }
 
   select(id: string): void {
-    console.log("THis location button isn't doing squat ", id)
+    this.router.navigate([{outlets: {single: null}}]);
+
     this.backend.onLocationSelected(id);
-    this.router.navigate(['/location', id]);
+    this.router.navigate([{outlets: {single: ['location', id]}}]);
   }
 
   saveLocation(event: ILocation): void {

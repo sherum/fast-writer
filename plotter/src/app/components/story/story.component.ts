@@ -59,8 +59,9 @@ export class StoryComponent {
   // );
 
   errorMessage="";
-  @Input() story: IStory = this.working;
+  @Input() story: IStory|undefined;
   @Output() storyEmitter: EventEmitter<IStory> = new EventEmitter<IStory>();
+  @Output() editEmitter:EventEmitter<void> = new EventEmitter<void>();
   plotCount:number =0
 
   genre;
@@ -74,6 +75,9 @@ export class StoryComponent {
     form.id = this.common.makeId(5);
     this.storyEmitter.emit(form);
     this.working = newStory;
+  }
+  hideSummary():void{
+    this.editEmitter.emit();
   }
 
 }

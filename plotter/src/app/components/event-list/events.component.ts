@@ -18,7 +18,7 @@ export class EventsComponent {
 
   eventSelected: boolean = false;
   selected: IEvent | undefined;
-  event$ = combineLatest([
+  events$ = combineLatest([
     this.backend.events$,
     this.backend.selectedStoryIdAction$
   ]).pipe(
@@ -32,8 +32,9 @@ export class EventsComponent {
   }
 
   select(id: string): void {
+     this.router.navigate([{outlets:{single:null}}]);
     this.backend.onEventSelected(id);
-    this.router.navigate(['/event', id]);
+   this.router.navigate([{outlets:{single:['event',id]}}]);
   }
 
   saveEvent(event: IEvent): void {

@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   constructor(private router: Router, private backend:BackendService) {}
 
   ngOnInit() {
+   this.router.navigate([{outlets: {details: null}}]);
 
   }
 

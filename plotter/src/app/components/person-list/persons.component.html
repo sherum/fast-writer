@@ -1,58 +1,68 @@
 
 
 
-<!--<h4>Person List</h4>-->
-<button class="btn btn-outline-primary  my-2" (click)="create()">New</button>
-<div class="row gx-5">
-<div class="col-md-4">
+<!--&lt;!&ndash;<h4>Person List</h4>&ndash;&gt;-->
+<!--<button class="btn btn-sm btn-outline-primary  my-2" (click)="create()">New</button>-->
+<!--<div class="row gx-5">-->
+<!--<div class="col-md-4">-->
 
-  <div *ngIf="people$ | async as people">
-<table class="table table-light table-hover table-group-divider align-middle table align-middle table-bordered">
-  <thead>
-  <tr>
-    <th>Name</th>
-<!--    <th>Author</th>-->
-<!--    <th>Genre</th>-->
-<!--    <th>Maguffin</th>-->
-<!--    <th>Summary</th>-->
-    <!--  <th>persons</th>-->
-    <!--  <th>Scenes</th>-->
-    <!--  <th>People</th>-->
-    <!--  <th>Events</th>-->
-    <!--  <th>Locations</th>-->
-    <!--  <th>Things</th>-->
-  </tr>
-  </thead>
-  <tbody class="vertical-align: bottom">
+<!--  <div *ngIf="people$ | async as people">-->
+<!--<table class="table table-light table-hover table-group-divider align-middle table align-middle table-bordered">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th>Name</th>-->
+<!--&lt;!&ndash;    <th>Author</th>&ndash;&gt;-->
+<!--&lt;!&ndash;    <th>Genre</th>&ndash;&gt;-->
+<!--&lt;!&ndash;    <th>Maguffin</th>&ndash;&gt;-->
+<!--&lt;!&ndash;    <th>Summary</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>persons</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>Scenes</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>People</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>Events</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>Locations</th>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <th>Things</th>&ndash;&gt;-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody class="vertical-align: bottom">-->
 
-  <tr *ngFor="let person of people">
-    <td><button class="nav-link link-primary" (click)="select(person.id)">{{person.name}}</button></td>
-<!--    <td>{{person.author}}  </td>-->
-<!--    <td>{{person.genre}}   </td>-->
-<!--    <td>{{person.maguffin}}</td>-->
-<!--    <td>{{person.summary}} </td>-->
-      <!--    Calculated fields
-      <td>{{person.persons}}<td>-->
-      <!--    <td>{{person.Scenes}}<td>-->
-      <!--    <td>{{person.People}}<td>-->
-      <!--    <td>{{person.Events}}<td>-->
-      <!--    <td>{{person.Locations}}<td>-->
-      <!--    <td>{{person.Things}}<td>-->
-  </tr>
-<!--</div>-->
-  </tbody>
-</table>
-</div>
-
-
-
-<!--<div class="col-md-8">-->
-<!--  <div *ngIf="personSelected">-->
-<!--    <app-person [person]="selected"-->
-<!--    (personEmitter)="savePerson($event)"></app-person>-->
-<!--  </div>-->
+<!--  <tr *ngFor="let person of people">-->
+<!--    <td><button class="nav-link link-primary" (click)="select(person.id)">{{person.name}}</button></td>-->
+<!--&lt;!&ndash;    <td>{{person.author}}  </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    <td>{{person.genre}}   </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    <td>{{person.maguffin}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;    <td>{{person.summary}} </td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    Calculated fields-->
+<!--      <td>{{person.persons}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{person.Scenes}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{person.People}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{person.Events}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{person.Locations}}<td>&ndash;&gt;-->
+<!--      &lt;!&ndash;    <td>{{person.Things}}<td>&ndash;&gt;-->
+<!--  </tr>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--  </tbody>-->
+<!--</table>-->
 <!--</div>-->
 
 
-</div>
 
+<!--&lt;!&ndash;<div class="col-md-8">&ndash;&gt;-->
+<!--&lt;!&ndash;  <div *ngIf="personSelected">&ndash;&gt;-->
+<!--&lt;!&ndash;    <app-person [person]="selected"&ndash;&gt;-->
+<!--&lt;!&ndash;    (personEmitter)="savePerson($event)"></app-person>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+<!--</div>-->
+
+
+
+<button class="link-primary rounded  my-2" (click)="create()" data-bs-toggle="tooltip" data-bs-placement="top" title="Create New Person">People</button>
+<div *ngIf="people$ | async as persons">
+ <div class="list-group" *ngFor="let person of persons">
+   <a class="list-group-item list-group-item-action my-1" (click)="select(person.id)">{{person.name}}</a>
+ </div>
+
+
+  </div>
