@@ -2,7 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ILocation} from "../../models/location";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
-import {combineLatest, map, tap} from "rxjs";
+import {combineLatest, map, merge, Observable, of, scan, tap} from "rxjs";
+import {IThing} from "../../models/thing";
+import {IStory} from "../../models/story";
 
 @Component({
   selector: 'app-location',
@@ -41,5 +43,19 @@ export class LocationComponent implements OnInit{
       console.log("THis is the location: ", this.location);
 
     });
+  }
+
+  save(insertAction:ILocation):void{
+     console.log("Inserted Action: ", insertAction);
+    let insertAction$: Observable<IThing> = of(insertAction);
+    merge(
+      this.locations$,
+      insertAction$,
+    ).pipe(
+      scan((acc, value) => (value instanceof Array) ?
+        [...value] : [...acc, value], [] as IStory[]),
+    );
+
+    // TODO add a visual cue that save occurred
   }
   }

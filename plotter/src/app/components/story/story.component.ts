@@ -24,40 +24,6 @@ export class StoryComponent {
     ));
 
 
-
-
-  // scenes$= this.backend.plots$.pipe(
-  //  catchError(err => {   //an arrow function followed by { implies a function
-  //     this.errorMessage = err;    //to signify an object literal => ({ }) surround the braces with parens
-  //     return EMPTY
-  //   })
-  // );
-  // people$ = this.backend.testPersons$.pipe(
-  //  catchError(err => {   //an arrow function followed by { implies a function
-  //     this.errorMessage = err;    //to signify an object literal => ({ }) surround the braces with parens
-  //     return EMPTY
-  //   })
-  // );
-  // events$ = this.backend.events$.pipe(
-  //  catchError(err => {   //an arrow function followed by { implies a function
-  //     this.errorMessage = err;    //to signify an object literal => ({ }) surround the braces with parens
-  //     return EMPTY
-  //   })
-  // );
-  // locations$ = this.backend.locations$.pipe(
-  //  catchError(err => {   //an arrow function followed by { implies a function
-  //     this.errorMessage = err;    //to signify an object literal => ({ }) surround the braces with parens
-  //     return EMPTY
-  //   })
-  // );
-  // things$ = this.backend.things$.pipe(
-  //   filter(data => data.id)
-  //  catchError(err => {   //an arrow function followed by { implies a function
-  //     this.errorMessage = err;    //to signify an object literal => ({ }) surround the braces with parens
-  //     return EMPTY
-  //   })
-  // );
-
   errorMessage="";
   @Input() story: IStory|undefined;
   @Output() storyEmitter: EventEmitter<IStory> = new EventEmitter<IStory>();
@@ -67,12 +33,14 @@ export class StoryComponent {
   genre;
 
   constructor(private common: CommonService, private backend:BackendService) {
-// this.story = {author: "", genre: "", id: "", maguffin: "", title: "", summary: "", userId: ""};
     this.genre = GENRE;
   }
 
-  save(form: IStory): void {
-    form.id = this.common.makeId(5);
+  save(): void {
+    let form = this.story;
+    if(+form.id) {
+      form.id = this.common.makeId(5);
+    }
     this.storyEmitter.emit(form);
     this.working = newStory;
   }

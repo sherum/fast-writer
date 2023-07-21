@@ -6,6 +6,7 @@ import {testStorys, newStory} from "../../data/sample.data";
 import {catchError, combineLatest, EMPTY, Observable, map, merge, scan, of, tap} from "rxjs";
 import {CommonService} from "../../services/common.service";
 import {Router} from "@angular/router";
+import {LocalStorageService} from "../../services/local-storage.service";
 
 
 @Component({
@@ -16,7 +17,7 @@ import {Router} from "@angular/router";
 export class StorysComponent {
 
 
-  constructor(private backend: BackendService, private common: CommonService, private router: Router) {
+  constructor(private backend: BackendService, private common: CommonService, private router: Router, private local:LocalStorageService) {
   }
 
   edit = false;
@@ -66,8 +67,12 @@ export class StorysComponent {
   }
 
   create() {
-    this.saveStory(newStory);
-
+    this.local.save("stories",newStory);
+    this.local.load('stories')
+    this.select("0");
+    let val = "";
+    this.backend.selectedStoryIdAction$.subscribe(param=>val = param);
+    console.log("ActiveStory: ", val);
   }
 
 

@@ -1,9 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {IPlot, PLOTTYPE} from "../../models/plot";
-import {combineLatest, filter, map, Observable, take, tap} from "rxjs";
+import {combineLatest, filter, map, merge, Observable, of, scan, take, tap} from "rxjs";
 import {BackendService} from "../../services/backend.service";
 import {testPlots} from "../../data/sample.data";
+import {IThing} from "../../models/thing";
+import {IStory} from "../../models/story";
 
 
 
@@ -48,6 +50,20 @@ export class PlotComponent implements  OnInit{
       console.log("THis is the plot: ", this.plot);
     });
 
+  }
+
+  save(insertAction:IPlot):void{
+     console.log("Inserted Action: ", insertAction);
+    let insertAction$: Observable<IThing> = of(insertAction);
+    merge(
+      this.plots$,
+      insertAction$,
+    ).pipe(
+      scan((acc, value) => (value instanceof Array) ?
+        [...value] : [...acc, value], [] as IStory[]),
+    );
+
+    // TODO add a visual cue that save occurred
   }
 
 

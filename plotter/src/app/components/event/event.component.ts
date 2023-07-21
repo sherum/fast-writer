@@ -2,8 +2,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IEvent} from "../../models/event";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
-import {combineLatest, map, tap} from "rxjs";
+import {combineLatest, map, merge, Observable, of, scan, tap} from "rxjs";
 import {IPerson} from "../../models/person";
+import {IThing} from "../../models/thing";
+import {IStory} from "../../models/story";
 
 @Component({
   selector: 'app-event',
@@ -15,7 +17,7 @@ export class EventComponent implements OnInit {
   constructor(private router: Router, private backend: BackendService, private route: ActivatedRoute) {
   }
 
-  people$ = combineLatest([
+  events$ = combineLatest([
     this.backend.events$,
     this.backend.selectedEventIdAction$,
   ]).pipe(
@@ -39,7 +41,18 @@ export class EventComponent implements OnInit {
       console.log("THis is the event: ", this.event);
 
     });
+  }
+  save(insertAction:IEvent):void{
+     console.log("Inserted Action: ", insertAction);
+    let insertAction$: Observable<IThing> = of(insertAction);
+    merge(
+      this.events$,
+      insertAction$,
+    ).pipe(
+      scan((acc, value) => (value instanceof Array) ?
+        [...value] : [...acc, value], [] as IStory[]),
+    );
 
-
+    // TODO add a visual cue that save occurred
   }
 }

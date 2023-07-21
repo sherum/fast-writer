@@ -2,7 +2,8 @@ import {Component, Input, OnInit, Output} from '@angular/core';
 import {IThing} from "../../models/thing";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
-import {combineLatest, map, tap} from "rxjs";
+import {combineLatest, map, merge, Observable, of, scan, tap} from "rxjs";
+import {IStory} from "../../models/story";
 
 
 @Component({
@@ -12,8 +13,7 @@ import {combineLatest, map, tap} from "rxjs";
 })
 export class ThingComponent implements OnInit{
 
-  constructor(private router: Router, private backend: BackendService,private route:ActivatedRoute) {
-  }
+  constructor(private router: Router, private backend: BackendService,private route:ActivatedRoute) {}
 
   things$ = combineLatest([
     this.backend.things$,
@@ -39,5 +39,19 @@ export class ThingComponent implements OnInit{
       console.log("THis is the thing: ", this.thing);
 
     });
+  }
+
+  save(insertAction:IThing):void{
+     console.log("Inserted Action: ", insertAction);
+    let insertAction$: Observable<IThing> = of(insertAction);
+    merge(
+      this.things$,
+      insertAction$,
+    ).pipe(
+      scan((acc, value) => (value instanceof Array) ?
+        [...value] : [...acc, value], [] as IStory[]),
+    );
+
+    // TODO add a visual cue that save occurred
   }
   }

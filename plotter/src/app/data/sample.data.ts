@@ -3,15 +3,6 @@ import {IStory} from "../models/story";
 export const testStorys = [
 
 
-  // {
-  //   title: "New Story ",
-  //   userId: "",
-  //   author: "",
-  //   genre: "",
-  //   maguffin: "",
-  //   summary: "",
-  //   id: "0"
-  // },
   {
     title: "Space Mage",
     userId: "12344asnwdbc",

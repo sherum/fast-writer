@@ -3,9 +3,11 @@ import {IScene} from "../../models/scene";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
 import {ILocation} from "../../models/location";
-import {combineLatest, map, tap} from "rxjs";
+import {combineLatest, map, merge, Observable, of, scan, tap} from "rxjs";
 import {IPerson} from "../../models/person";
 import {IPlot, PLOTTYPE} from "../../models/plot";
+import {IThing} from "../../models/thing";
+import {IStory} from "../../models/story";
 
 @Component({
   selector: 'app-scene',
@@ -43,20 +45,22 @@ export class SceneComponent {
     });
   }
 
-    create()
-  :
-    void {}
+    create(): void {}
 
-    select(id
-  :
-    string
-  ):
-    void {}
+    select(id:string):void {}
 
-    saveScene(event
-  :
-    IScene
-  ):
-    void {}
+    save(insertAction:IScene):void{
+     console.log("Inserted Action: ", insertAction);
+    let insertAction$: Observable<IThing> = of(insertAction);
+    merge(
+      this.scenes$,
+      insertAction$,
+    ).pipe(
+      scan((acc, value) => (value instanceof Array) ?
+        [...value] : [...acc, value], [] as IStory[]),
+    );
+
+    // TODO add a visual cue that save occurred
+  }
 
   }
