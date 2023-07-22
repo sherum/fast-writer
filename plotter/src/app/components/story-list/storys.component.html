@@ -21,15 +21,19 @@
 
   <div class="col-md-8">
     <div *ngIf="activeStory$| async as story">
+
       <div *ngIf="!edit">
         <app-story-summary [story]="story" (editStory)="displayDetail()"></app-story-summary>
       </div>
       <div *ngIf="edit">
         <app-story [story]="story" (editEmitter)="hideDetail()" (storyEmitter)="saveStory($event)"></app-story>
       </div>
-
+ {{story|json}}
     </div>
+
   </div>
+{{edit | json}}
+
 
 
 <!--</div>-->

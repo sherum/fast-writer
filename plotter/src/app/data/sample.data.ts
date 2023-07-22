@@ -156,39 +156,39 @@ export const testThings = [
 
 export const testScenes = [
   {
-     id: "2SS",
+    id: "2SS",
     storyId: "3",
     name: "Home Cooking",
-    linkedPlot:""
+    linkedPlot: ""
   },
   {
-     id: "3SS",
+    id: "3SS",
     storyId: "3",
     name: "Divine Guilt",
-    linkedPlot:""
+    linkedPlot: ""
   },
   {
-     id: "5SS",
+    id: "5SS",
     storyId: "3",
     name: "Missing Time",
-    linkedPlot:""
-  },{
-     id: "6SS",
+    linkedPlot: ""
+  }, {
+    id: "6SS",
     storyId: "2",
     name: "Launch Sequence",
-    linkedPlot:""
+    linkedPlot: ""
   },
   {
-     id: "7SS",
+    id: "7SS",
     storyId: "2",
     name: "Void Arrival",
-    linkedPlot:""
+    linkedPlot: ""
   },
   {
-     id: "8SS",
+    id: "8SS",
     storyId: "1",
     name: "Johnny Storm",
-    linkedPlot:""
+    linkedPlot: ""
   },
 ];
 
@@ -201,5 +201,45 @@ export const newStory = {
   maguffin: "",
   summary: "",
   id: "0"
-
 }
+export const newPlot = {
+  id: "",
+  storyId: "",
+  name: "",
+  plotType: "",
+  description: "",
+  parent: ""
+}
+export const newScene = {
+  id: "",
+  storyId: "",
+  name: "",
+  linkedPlot: ""
+}
+export const newPerson = {
+  id: "",
+  storyId: "",
+  name: ""
+}
+export const newEvent = {
+  id: "",
+  storyId: "",
+  name: "",
+  description: "",
+  plotId: "",
+  location: "",
+  date: ""
+}
+export const newLocation = {
+  id: "",
+  storyId: "",
+  name: ""
+}
+export const newThing = {
+  id: "",
+  storyId: "",
+  name: "",
+  description: ""
+}
+
+

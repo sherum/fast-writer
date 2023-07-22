@@ -14,21 +14,21 @@ import {catchError, combineLatest, EMPTY, Observable, map, merge,scan,of,tap,cou
 })
 export class StoryComponent {
   working = newStory;
-  plots$ = combineLatest([
-    this.backend.plots$,
-    this.backend.selectedStoryIdAction$
-  ]).pipe(
-    map(([plots, selectedId]) =>
-      plots.filter(story => story.id === selectedId)
-
-    ));
+  // plots$ = combineLatest([
+  //   this.backend.plots$,
+  //   this.backend.selectedStoryIdAction$
+  // ]).pipe(
+  //   map(([plots, selectedId]) =>
+  //     plots.filter(story => story.id === selectedId)
+  //
+  //   ));
 
 
   errorMessage="";
   @Input() story: IStory|undefined;
   @Output() storyEmitter: EventEmitter<IStory> = new EventEmitter<IStory>();
   @Output() editEmitter:EventEmitter<void> = new EventEmitter<void>();
-  plotCount:number =0
+
 
   genre;
 
@@ -38,7 +38,7 @@ export class StoryComponent {
 
   save(): void {
     let form = this.story;
-    if(+form.id) {
+    if(!form.id) {
       form.id = this.common.makeId(5);
     }
     this.storyEmitter.emit(form);

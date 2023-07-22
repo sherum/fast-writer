@@ -16,7 +16,8 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
    this.local.clear();
-  this.router.navigate([{outlets: {details: null}}]);
+  this.router.navigateByUrl('/storys');
+
 
   }
 
