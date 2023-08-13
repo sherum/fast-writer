@@ -1,23 +1,12 @@
 <button class="btn btn-primary  my-2" (click)="create()">New Story</button>
  <div *ngIf="stories$ | async as stories">
 
-
-
-
  <ul class="list-group list-group-horizontal my-2">
   <li *ngFor="let story of stories" class="list-group-item nav-link link-primary" (click)="select(story.id)">{{story.title}}</li>
 
 </ul>
 
-
-<!--    <ul  class="list-group list-group-horizontal">-->
-<!--      <li class="list-group-item nav-link link-primary"> {{story.title}} </li>-->
-<!--    </ul>-->
-
-
   </div>
-
-
 
   <div class="col-md-8">
     <div *ngIf="activeStory$| async as story">
@@ -27,14 +16,12 @@
       </div>
       <div *ngIf="edit">
         <app-story [story]="story" (editEmitter)="hideDetail()" (storyEmitter)="saveStory($event)"></app-story>
-      </div>
- {{story|json}}
+
     </div>
 
   </div>
-{{edit | json}}
 
 
 
-<!--</div>-->
+
 

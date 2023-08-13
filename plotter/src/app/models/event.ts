@@ -7,13 +7,4 @@ export interface IEvent {
   location?:string; //location ID
 }
 
-export class EventList{
-  id:string|undefined;
-  storyId:string|undefined;
-  events:Array<Event>|undefined;
 
-  constructor(){
-    this.events=new Array<Event>();
-  }
-
-}

@@ -31,6 +31,7 @@ import { PersonBuilderComponent } from './components/person-builder/person-build
 import { LocationBuilderComponent } from './components/location-builder/location-builder.component';
 import { StorySummaryComponent } from './components/story-summary/story-summary.component';
 import { StoryDetailComponent } from './components/story-detail/story-detail.component';
+import {AppLoginModule} from "./authentication/authentication/app-login.module";
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { StoryDetailComponent } from './components/story-detail/story-detail.com
     BrowserModule,
     HttpClientModule,
     UserModule,
+    AppLoginModule,
     AppRoutingModule,
     FormsModule
   ],

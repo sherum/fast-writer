@@ -14,22 +14,10 @@ import {catchError, combineLatest, EMPTY, Observable, map, merge,scan,of,tap,cou
 })
 export class StoryComponent {
   working = newStory;
-  // plots$ = combineLatest([
-  //   this.backend.plots$,
-  //   this.backend.selectedStoryIdAction$
-  // ]).pipe(
-  //   map(([plots, selectedId]) =>
-  //     plots.filter(story => story.id === selectedId)
-  //
-  //   ));
-
-
   errorMessage="";
   @Input() story: IStory|undefined;
   @Output() storyEmitter: EventEmitter<IStory> = new EventEmitter<IStory>();
   @Output() editEmitter:EventEmitter<void> = new EventEmitter<void>();
-
-
   genre;
 
   constructor(private common: CommonService, private backend:BackendService) {
