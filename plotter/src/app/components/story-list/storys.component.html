@@ -2,7 +2,9 @@
  <div *ngIf="stories$ | async as stories">
 
  <ul class="list-group list-group-horizontal my-2">
-  <li *ngFor="let story of stories" class="list-group-item nav-link link-primary" (click)="select(story.id)">{{story.title}}</li>
+  <li *ngFor="let story of stories" class="list-group-item nav-link link-primary"
+
+      (click)="select(story.id)">{{story.title}}</li>
 
 </ul>
 
